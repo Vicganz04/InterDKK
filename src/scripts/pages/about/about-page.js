@@ -101,7 +101,7 @@ class AboutPage {
           <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
             <div class="card team-card text-center border-0 shadow-sm h-100 w-100">
               <div class="card-body d-flex flex-column">
-                <img src="/avatar-noven.jpg" alt="Y Noven Dhimas Nugroho" class="rounded-circle img-fluid mx-auto mb-3 shadow-sm team-img">
+                <img src="/avatar-noven.jpg" alt="Yopen Dhimas Nugroho" class="rounded-circle img-fluid mx-auto mb-3 shadow-sm team-img">
                 <h5 class="card-title fw-bold mb-1 section-title">Y Noven Dhimas Nugroho</h5>
                 <p class="section-subtitle small mb-3">KIA</p>
                 <div class="mt-auto">
