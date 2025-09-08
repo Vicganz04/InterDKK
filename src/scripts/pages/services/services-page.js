@@ -56,27 +56,27 @@ class ServicesPage {
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-md-4 mb-4">
+          <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
               <div class="card-body text-center">
-                <i class="fas fa-ruler card-service-icon"></i>
-                <h5 class="card-service-title mb-2">Pengukuran IMT</h5>
-                <p class="card-service-description text-muted">Hitung Indeks Massa Tubuh (IMT) Anda untuk mengetahui status berat badan.</p>
-                <a href="#/imt" class="btn btn-success">Hitung IMT</a>
+                   <i class="fas fa-baby fa-3x mb-3" style="color: #6ebe77;"></i>
+                  <h5 class="card-title fw-bold mb-2">Cek Kesehatan Balita</h5>
+                  <p class="card-text text-muted">Pantau status gizi, pertumbuhan, dan kesehatan balita Anda secara menyeluruh.</p>
+                  <a href="#/imt" class="btn btn-success">Cek Balita</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-4">
+          <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
               <div class="card-body text-center">
-                <i class="fas fa-fire fa-3x mb-3" style="color: #6ebe77;"></i>
-                <h5 class="card-title fw-bold mb-2">Pengukuran Kalori Harian</h5>
-                <p class="card-text text-muted">Ketahui kebutuhan kalori harian Anda berdasarkan data pribadi dan aktivitas.</p>
-                <a href="#/calories" class="btn btn-success">Hitung Kalori</a>
+                   <i class="fas fa-user fa-3x mb-3" style="color: #6ebe77;"></i>
+                  <h5 class="card-title fw-bold mb-2">Cek Kesehatan Dewasa</h5>
+                  <p class="card-text text-muted">Cek status kesehatan dan kebutuhan kalori harian untuk dewasa.</p>
+                  <a href="#/calories" class="btn btn-success">Cek Dewasa</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-4">
+          <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
               <div class="card-body text-center">
                 <i class="fas fa-hospital fa-3x mb-3" style="color: #6ebe77;"></i>
@@ -86,27 +86,7 @@ class ServicesPage {
               </div>
             </div>
           </div>
-            <div class="col-md-4 mb-4">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                  <i class="fas fa-apple-alt fa-3x mb-3" style="color: #6ebe77;"></i>
-                  <h5 class="card-title fw-bold mb-2">Cek Gizi</h5>
-                  <p class="card-text text-muted">Cek status gizi anak dan keluarga berdasarkan standar WHO.</p>
-                  <a href="#/gizi" class="btn btn-success">Cek Gizi</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                  <i class="fas fa-baby fa-3x mb-3" style="color: #6ebe77;"></i>
-                  <h5 class="card-title fw-bold mb-2">Cek Stunting</h5>
-                  <p class="card-text text-muted">Deteksi risiko stunting pada anak secara cepat dan mudah.</p>
-                  <a href="#/stunting" class="btn btn-success">Cek Stunting</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 mb-4">
+            <div class="col-md-6 mb-4">
               <div class="card h-100 shadow-sm">
                 <div class="card-body text-center">
                   <i class="fas fa-tint fa-3x mb-3" style="color: #6ebe77;"></i>
