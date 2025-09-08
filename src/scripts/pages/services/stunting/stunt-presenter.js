@@ -26,7 +26,7 @@ class StuntPresenter {
 				zscore: 0,
 				status: "Data tidak valid",
 				saran: "Masukkan tinggi badan dan umur yang benar.",
-				warna: "#bdbdbd"
+				warna: "#2ffe70ff"
 			});
 			return;
 		}
