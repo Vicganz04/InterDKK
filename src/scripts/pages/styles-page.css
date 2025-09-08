@@ -1,0 +1,172 @@
+/* Warna utama */
+:root {
+  --primary-green: #104f1f;
+  --secondary-green: #6ebe77;
+  --section-bg: #f8fdf9;
+}
+
+/* Judul utama */
+.section-title {
+  color: var(--primary-green);
+  font-weight: bold;
+}
+
+.section-subtitle {
+  color: #4d7f5e;
+}
+
+/* Card layanan */
+.card-service-icon {
+  color: var(--secondary-green);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-service-title {
+  color: var(--primary-green);
+  font-weight: bold;
+}
+
+.card-service-desc {
+  color: #4d7f5e;
+}
+
+/* Button utama */
+.btn-success {
+  background-color: var(--secondary-green);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btn-success:hover {
+  background-color: var(--primary-green);
+}
+
+/* Section background */
+.features-section,
+.section-bg {
+  background-color: var(--section-bg);
+}
+
+/* Card hasil */
+.card-result {
+  box-shadow: 0 2px 8px rgba(16, 79, 31, 0.08);
+  border-radius: 12px;
+}
+
+.card-result .card-title {
+  color: var(--primary-green);
+  font-weight: bold;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(90deg, #ebf5ec 0%, #f8fdf9 100%);
+}
+
+.cta-section {
+  background-color: var(--primary-green);
+  color: #fff;
+}
+
+.cta-section .btn-light {
+  font-weight: bold;
+}
+
+/* About Section */
+.about-section {
+  background-color: var(--section-bg);
+}
+
+.about-section .section-title {
+  color: var(--primary-green);
+}
+
+.about-img {
+  max-width: 70%;
+  height: auto;
+  border-radius: 25px;
+}
+
+.about-text {
+  color: var(--primary-green);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.about-presenter-info {
+  color: #333;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.team-card img {
+  border: 3px solid var(--secondary-green);
+}
+
+.team-card img.team-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid var(--secondary-green);
+}
+
+.team-link-github {
+  color: var(--primary-green);
+}
+
+.team-link-linkedin {
+  color: #007bff;
+}
+
+/* Puskesmas Card */
+.puskesmas-card .card-title {
+  color: var(--primary-green);
+  font-weight: bold;
+}
+.brand-green {
+  color: var(--primary-green);
+}
+.brand-secondary {
+  color: var(--secondary-green);
+}
+.feature-img {
+  max-height: 100px;
+}
+.why-img {
+  border-radius: 16px;
+  max-width: 100%;
+  height: auto;
+}
+.why-text {
+  font-size: 1.1rem;
+}
+.cta-section {
+  background-color: var(--primary-green);
+}
+.cta-title {
+  color: #fff;
+}
+.cta-subtitle {
+  color: #d3ffdc;
+}
+
+/* Tambahkan ke file CSS global Anda */
+.card.h-100.shadow-sm {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.card.h-100.shadow-sm:hover {
+  box-shadow: 0 8px 24px rgba(34, 139, 34, 0.15), 0 1.5px 6px rgba(0,0,0,0.08);
+  transform: translateY(-6px) scale(1.03);
+  border: 1.5px solid #6ebe77;
+}
+
+.btn-success {
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.btn-success:hover, .btn-success:focus {
+  background: #4cae4c;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(34,139,34,0.12);
+}
