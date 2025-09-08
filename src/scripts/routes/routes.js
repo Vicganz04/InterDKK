@@ -5,7 +5,6 @@ import PuskePage from "../pages/services/puskesmas/puske-page";
 import IMTPage from "../pages/services/IMT/IMT-page";
 import CaloriesPage from "../pages/services/calories/calories-page";
 import StuntPage from "../pages/services/stunting/stunt-page";
-import giziPage from "../pages/services/gizi/gizi-page";
 import siklusPage from "../pages/services/siklus/siklus-page";
 
 const routes = {
@@ -16,7 +15,6 @@ const routes = {
   "/imt": new IMTPage(),
   "/calories": new CaloriesPage(),
   "/stunting": new StuntPage(),
-  "/gizi": new giziPage(),
   "/siklus": new siklusPage(),
 };
 
