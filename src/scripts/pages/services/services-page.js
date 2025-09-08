@@ -61,7 +61,7 @@ class ServicesPage {
               <div class="card-body text-center">
                 <i class="fas fa-ruler card-service-icon"></i>
                 <h5 class="card-service-title mb-2">Pengukuran IMT</h5>
-                <p class="card-service-desc">Hitung Indeks Massa Tubuh Anda untuk mengetahui status berat badan.</p>
+                <p class="card-service-description text-muted">Hitung Indeks Massa Tubuh (IMT) Anda untuk mengetahui status berat badan.</p>
                 <a href="#/imt" class="btn btn-success">Hitung IMT</a>
               </div>
             </div>
@@ -86,41 +86,39 @@ class ServicesPage {
               </div>
             </div>
           </div>
-          <!-- Section Cek Gizi -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body text-center">
-                <i class="fas fa-apple-alt fa-3x mb-3" style="color: #6ebe77;"></i>
-                <h5 class="card-title fw-bold mb-2">Cek Gizi</h5>
-                <p class="card-text text-muted">Cek status gizi Anda dan keluarga untuk hidup lebih sehat.</p>
-                <a href="#/gizi" class="btn btn-success">Cek Gizi</a>
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                  <i class="fas fa-apple-alt fa-3x mb-3" style="color: #6ebe77;"></i>
+                  <h5 class="card-title fw-bold mb-2">Cek Gizi</h5>
+                  <p class="card-text text-muted">Cek status gizi anak dan keluarga berdasarkan standar WHO.</p>
+                  <a href="#/cekgizi" class="btn btn-success">Cek Gizi</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                  <i class="fas fa-baby fa-3x mb-3" style="color: #6ebe77;"></i>
+                  <h5 class="card-title fw-bold mb-2">Cek Stunting</h5>
+                  <p class="card-text text-muted">Deteksi risiko stunting pada anak secara cepat dan mudah.</p>
+                  <a href="#/stunting" class="btn btn-success">Cek Stunting</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                  <i class="fas fa-tint fa-3x mb-3" style="color: #6ebe77;"></i>
+                  <h5 class="card-title fw-bold mb-2">Kebutuhan Mineral Harian</h5>
+                  <p class="card-text text-muted">Ketahui kebutuhan mineral harian tubuh Anda untuk hidup sehat.</p>
+                  <a href="#/mineral" class="btn btn-success">Cek Mineral</a>
+                </div>
+              </div>
+            </div>
               </div>
             </div>
           </div>
-          <!-- Section Cek Stunting -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body text-center">
-                <i class="fas fa-child fa-3x mb-3" style="color: #6ebe77;"></i>
-                <h5 class="card-title fw-bold mb-2">Cek Stunting</h5>
-                <p class="card-text text-muted">Deteksi dini risiko stunting pada anak dengan mudah.</p>
-                <a href="#/stunting" class="btn btn-success">Cek Stunting</a>
-              </div>
-            </div>
-          </div>
-          <!-- Section Artikel Kesehatan -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body text-center">
-                <i class="fas fa-newspaper fa-3x mb-3" style="color: #6ebe77;"></i>
-                <h5 class="card-title fw-bold mb-2">Artikel Kesehatan</h5>
-                <p class="card-text text-muted">Baca berbagai artikel kesehatan terpercaya untuk menambah wawasan.</p>
-                <a href="#/artikel" class="btn btn-success">Baca Artikel</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     `;
   }
 

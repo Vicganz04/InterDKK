@@ -4,6 +4,8 @@ import ServicesPage from '../pages/services/services-page';
 import PuskePage from '../pages/services/puskesmas/puske-page';
 import IMTPage from '../pages/services/IMT/IMT-page';
 import CaloriesPage from '../pages/services/calories/calories-page'; 
+import StuntPage from '../pages/services/stunting/stunt-page';
+
 
 const routes = {
   '/': new HomePage(),
@@ -12,9 +14,10 @@ const routes = {
   '/puskesmas': new PuskePage(),
   '/imt': new IMTPage(),
   '/calories': new CaloriesPage(),
-
-
+  '/stunting': new StuntPage(),
 
 };
+
+
 
 export default routes;
