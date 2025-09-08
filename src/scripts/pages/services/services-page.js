@@ -92,7 +92,7 @@ class ServicesPage {
                   <i class="fas fa-apple-alt fa-3x mb-3" style="color: #6ebe77;"></i>
                   <h5 class="card-title fw-bold mb-2">Cek Gizi</h5>
                   <p class="card-text text-muted">Cek status gizi anak dan keluarga berdasarkan standar WHO.</p>
-                  <a href="#/cekgizi" class="btn btn-success">Cek Gizi</a>
+                  <a href="#/gizi" class="btn btn-success">Cek Gizi</a>
                 </div>
               </div>
             </div>
@@ -110,9 +110,9 @@ class ServicesPage {
               <div class="card h-100 shadow-sm">
                 <div class="card-body text-center">
                   <i class="fas fa-tint fa-3x mb-3" style="color: #6ebe77;"></i>
-                  <h5 class="card-title fw-bold mb-2">Kebutuhan Mineral Harian</h5>
-                  <p class="card-text text-muted">Ketahui kebutuhan mineral harian tubuh Anda untuk hidup sehat.</p>
-                  <a href="#/mineral" class="btn btn-success">Cek Mineral</a>
+                  <h5 class="card-title fw-bold mb-2">Siklus Menstruasi</h5>
+                  <p class="card-text text-muted">Pantau dan catat siklus menstruasi Anda untuk kesehatan reproduksi yang optimal.</p>
+                  <a href="#/siklus" class="btn btn-success">Cek Siklus</a>
                 </div>
               </div>
             </div>

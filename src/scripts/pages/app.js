@@ -38,10 +38,11 @@ class App {
     const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
     navLinks.forEach((link) => {
       link.classList.remove("active");
-      const linkPath = link.getAttribute("href").substring(1);
+      const linkPath = link.getAttribute("href").replace(/^#/, "");
+      // Hanya aktifkan jika linkPath ada di routes dan sama dengan currentPath
       if (
-        currentPath === linkPath ||
-        (currentPath === "/" && linkPath === "/")
+        routes[linkPath] &&
+        (currentPath === linkPath || (currentPath === "/" && linkPath === "/"))
       ) {
         link.classList.add("active");
       }

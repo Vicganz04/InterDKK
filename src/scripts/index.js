@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  window.addEventListener("load", initialRender);
+  // Langsung render saat DOM siap
+  await initialRender();
 
   window.addEventListener("hashchange", async () => {
     await app.renderPage();
