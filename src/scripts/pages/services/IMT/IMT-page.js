@@ -2,7 +2,38 @@ import IMTPresenter from "./IMT-presenter";
 
 class IMTPage {
   constructor() {
-    this._presenter = null;
+    this._presenter = new IMTPresenter({
+      view: this,
+      resultContainer: null,
+    });
+  }
+
+  // Tambahkan method untuk menerima hasil dari presenter
+  tampilkanHasilZScore(data) {
+    // Render hasil ke resultContainer
+    const el = document.getElementById("zscore-result");
+    if (!el) return;
+    el.innerHTML = `
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Hasil Z-Score</h5>
+          <ul>
+            <li><b>BB/U:</b> Z = ${
+              data.zScoreBBU?.toFixed(2) ?? "-"
+            }, Status: ${data.statusBBU}</li>
+            <li><b>TB/U:</b> Z = ${
+              data.zScoreTBU?.toFixed(2) ?? "-"
+            }, Status: ${data.statusTBU}</li>
+            <li><b>BB/TB:</b> Z = ${
+              data.zScoreBBTB?.toFixed(2) ?? "-"
+            }, Status: ${data.statusBBTB}</li>
+            <li><b>IMT/U:</b> Z = ${
+              data.zScoreIMTU?.toFixed(2) ?? "-"
+            }, Status: ${data.statusIMTU}</li>
+          </ul>
+        </div>
+      </div>
+    `;
   }
 
   async render() {
@@ -15,8 +46,12 @@ class IMTPage {
             <input type="text" class="form-control" id="nama-anak" required />
           </div>
           <div class="mb-3">
+            <label for="tgl-lahir-anak" class="form-label">Tanggal Lahir Anak</label>
+            <input type="date" class="form-control" id="tgl-lahir-anak" required />
+          </div>
+          <div class="mb-3">
             <label for="umur-anak" class="form-label">Umur (bulan)</label>
-            <input type="number" class="form-control" id="umur-anak" required min="0" />
+            <input type="number" class="form-control" id="umur-anak" required min="0" readonly />
           </div>
           <div class="mb-3">
             <label for="jenis-kelamin" class="form-label">Jenis Kelamin</label>
@@ -36,11 +71,7 @@ class IMTPage {
           </div>
           <div class="mb-3">
             <label for="cara-ukur" class="form-label">Cara Ukur Tinggi</label>
-            <select class="form-select" id="cara-ukur" required>
-              <option value="">Pilih...</option>
-              <option value="terentang">&lt; 2 tahun (Terentang)</option>
-              <option value="berdiri">&ge; 2 tahun (Berdiri)</option>
-            </select>
+            <input type="text" class="form-control" id="cara-ukur" required readonly />
           </div>
           <div class="mb-3">
             <label for="tgl-pengukuran" class="form-label">Tanggal Pengukuran Terakhir</label>
@@ -54,8 +85,74 @@ class IMTPage {
   }
 
   async afterRender() {
+    this._presenter._resultContainer = document.getElementById("zscore-result");
+    const tglLahirInput = document.getElementById("tgl-lahir-anak");
+    const umurInput = document.getElementById("umur-anak");
+    const caraUkurInput = document.getElementById("cara-ukur");
+
+    // Hitung umur dan cara ukur otomatis saat tanggal lahir diubah
+    tglLahirInput.addEventListener("change", () => {
+      const tglLahir = new Date(tglLahirInput.value);
+      const today = new Date();
+
+      // Hitung total bulan
+      let umurBulan =
+        (today.getFullYear() - tglLahir.getFullYear()) * 12 +
+        (today.getMonth() - tglLahir.getMonth());
+
+      // Hitung hari
+      let hari = today.getDate() - tglLahir.getDate();
+      if (hari < 0) {
+        umurBulan -= 1;
+        // Ambil jumlah hari di bulan sebelumnya
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        hari = prevMonth.getDate() + hari;
+      }
+
+      umurBulan = umurBulan < 0 ? 0 : umurBulan;
+      hari = hari < 0 ? 0 : hari;
+
+      umurInput.value = umurBulan; // tetap isi input umur (bulan) untuk proses selanjutnya
+
+      // Tampilkan umur detail di bawah input (opsional)
+      let umurDetail = document.getElementById("umur-detail");
+      if (!umurDetail) {
+        umurDetail = document.createElement("div");
+        umurDetail.id = "umur-detail";
+        umurInput.parentNode.appendChild(umurDetail);
+      }
+      umurDetail.style.fontSize = "0.95em";
+      umurDetail.style.color = "#2d6a4f";
+      umurDetail.textContent = `Umur anak: ${umurBulan} bulan ${hari} hari`;
+
+      // Cara ukur otomatis
+      if (umurBulan < 24) {
+        caraUkurInput.value = "Terentang (< 2 tahun)";
+      } else {
+        caraUkurInput.value = "Berdiri (≥ 2 tahun)";
+      }
+    });
+
     const zscoreForm = document.getElementById("zscore-form");
     const zscoreResultDiv = document.getElementById("zscore-result");
+
+    // Fungsi ambil LMS dari JSON
+    function getLMS(json, key, jk) {
+      // key: umur (untuk BB/U, TB/U, IMT/U), panjang/tinggi (untuk BB/PB, BB/TB)
+      // jk: "L" atau "P"
+      if (json[key] && json[key][jk]) {
+        return json[key][jk];
+      }
+      return null;
+    }
+
+    function calculateZScore(x, L, M, S) {
+      if (L === 0) {
+        return Math.log(x / M) / S;
+      } else {
+        return (Math.pow(x / M, L) - 1) / (L * S);
+      }
+    }
 
     zscoreForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -66,52 +163,14 @@ class IMTPage {
       const bb = parseFloat(document.getElementById("bb-anak").value);
       const tb = parseFloat(document.getElementById("tb-anak").value);
       const caraUkur = document.getElementById("cara-ukur").value;
-      const tgl = document.getElementById("tgl-pengukuran").value;
 
-      // Simulasi perhitungan Z-Score (dummy, ganti dengan standar WHO jika ada)
-      const medianBB = 10; // contoh median berat badan ideal
-      const sdBB = 2; // contoh SD
-      const medianTB = 80; // contoh median tinggi badan ideal
-      const zScore = (bb - medianBB) / sdBB;
-
-      let status = "";
-      let warna = "#6ebe77";
-      let saran = "";
-      if (zScore < -3) {
-        status = "Gizi Buruk";
-        warna = "#e74c3c";
-        saran =
-          "Segera konsultasikan ke tenaga kesehatan dan perbaiki pola makan anak dengan gizi seimbang.";
-      } else if (zScore < -2) {
-        status = "Gizi Kurang";
-        warna = "#f39c12";
-        saran =
-          "Perbaiki asupan gizi anak dan pantau pertumbuhan secara rutin.";
-      } else if (zScore > 2) {
-        status = "Gizi Lebih/Obesitas";
-        warna = "#3498db";
-        saran =
-          "Batasi makanan tinggi gula/lemak dan ajak anak beraktivitas fisik.";
-      } else {
-        status = "Normal";
-        warna = "#6ebe77";
-        saran =
-          "Pertahankan pola makan bergizi seimbang dan pantau pertumbuhan anak secara berkala.";
-      }
-
-      zscoreResultDiv.innerHTML = `
-        <div class="card card-result mt-3" style="background:${warna}; color:#fff;">
-          <div class="card-body">
-            <h5 class="card-title">Hasil Z-Score Anak</h5>
-            <p class="mb-1"><strong>Nama:</strong> ${nama}</p>
-            <p class="mb-1"><strong>Status:</strong> ${status}</p>
-            <p class="mb-1"><strong>Berat Badan Ideal:</strong> ${medianBB} kg</p>
-            <p class="mb-1"><strong>Tinggi Badan Ideal:</strong> ${medianTB} cm</p>
-            <p class="mb-1"><strong>Saran:</strong> ${saran}</p>
-          </div>
-        </div>
-      `;
+      // Panggil presenter
+      this._presenter.hitungZScoreAnak({ jk, umur, bb, tb, caraUkur });
     });
+  }
+
+  tampilkanHasilIMT(data) {
+    // render hasil ke resultContainer
   }
 }
 

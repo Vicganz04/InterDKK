@@ -23,6 +23,10 @@ module.exports = merge(common, {
           },
         ],
       },
+      {
+        test: /\.json$/,
+        type: "json",
+      },
     ],
   },
   plugins: [new CleanWebpackPlugin(), new MiniCssExtractPlugin()],

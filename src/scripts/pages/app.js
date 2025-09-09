@@ -15,17 +15,16 @@ class App {
 
     if (page) {
       try {
-        this.#content.innerHTML = await page.render();
-        await page.afterRender();
+        const content = await page.render();
+        this.#content.innerHTML = content;
+        if (page.afterRender) await page.afterRender();
       } catch (error) {
-        console.error("Error rendering page:", error);
         this.#content.innerHTML = `<div class="container text-center py-5">
-                                     <h2>Halaman tidak ditemukan</h2>
-                                     <p>Maaf, konten yang Anda cari tidak tersedia.</p>
+                                     <h2>Terjadi kesalahan</h2>
+                                     <p>${error.message}</p>
                                    </div>`;
       }
     } else {
-      console.warn(`No route found for URL: ${url}`);
       this.#content.innerHTML = `<div class="container text-center py-5">
                                    <h2>Halaman tidak ditemukan</h2>
                                    <p>URL tidak valid atau halaman belum dibuat.</p>

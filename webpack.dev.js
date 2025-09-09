@@ -10,6 +10,10 @@ module.exports = merge(common, {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.json$/,
+        type: "json",
+      },
     ],
   },
   devServer: {
