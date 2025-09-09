@@ -4,10 +4,37 @@ export default class HomePage {
   #presenter;
 
   async render() {
+
     return `
-<!-- Hero Section -->
-<section class="hero-section py-5 section-bg" style="background: #2bb7b3; min-height: 480px;">
-  <div class="container-fluid">
+<!-- Hero Section with Live Wallpaper -->
+<section class="hero-section py-5 section-bg" style="position:relative; min-height: 672px; overflow:hidden; background:linear-gradient(120deg,#6ebe77 60%,#b6e2c6 100%);">
+  <!-- Live SVG Waves Wallpaper -->
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;">
+    <svg viewBox="0 0 1440 720" width="100%" height="100%" preserveAspectRatio="none" style="display:block;">
+      <defs>
+        <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6ebe77"/>
+          <stop offset="100%" stop-color="#b6e2c6"/>
+        </linearGradient>
+        <filter id="blurWave"><feGaussianBlur stdDeviation="20"/></filter>
+      </defs>
+      <g>
+        <path id="wave1" d="M0,480 Q360,600 720,480 T1440,480 V720 H0Z" fill="url(#waveGrad)" opacity="0.7">
+          <animate attributeName="d" dur="8s" repeatCount="indefinite"
+            values="M0,480 Q360,600 720,480 T1440,480 V720 H0Z;
+                    M0,500 Q360,400 720,500 T1440,480 V720 H0Z;
+                    M0,480 Q360,600 720,480 T1440,480 V720 H0Z"/>
+        </path>
+        <path id="wave2" d="M0,520 Q360,640 720,520 T1440,520 V720 H0Z" fill="#fff" opacity="0.12" filter="url(#blurWave)">
+          <animate attributeName="d" dur="10s" repeatCount="indefinite"
+            values="M0,520 Q360,640 720,520 T1440,520 V720 H0Z;
+                    M0,540 Q360,540 720,540 T1440,520 V720 H0Z;
+                    M0,520 Q360,640 720,520 T1440,520 V720 H0Z"/>
+        </path>
+      </g>
+    </svg>
+  </div>
+  <div class="container-fluid" style="position:relative;z-index:2;">
     <div class="row align-items-center">
       <div class="col-lg-6 col-md-7 text-white px-5 py-4">
         <h2 class="fw-bold mb-3" style="font-size:2.7rem;line-height:1.15;">
@@ -137,10 +164,6 @@ export default class HomePage {
     </div>
   </div>
 </section>
-
-<div class="floating-chatbot-btn" title="Chatbot">
-  <i class="fas fa-comments"></i>
-</div>
 
     `;
   }

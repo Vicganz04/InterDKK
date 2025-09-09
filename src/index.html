@@ -15,6 +15,7 @@
       <nav
         class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top"
         style="background-color: #ebf5ec"
+        style="border-radius: 50px;"
       >
         <div class="container">
           <a class="navbar-brand fw-bold fs-4" href="#/">
@@ -125,11 +126,12 @@
         </div>
       </div>
     </footer>
-    <script>
-      // Setelah konten utama selesai dirender (misal di App.renderPage() setelah await page.afterRender())
-      const loader = document.querySelector('.bg-loader');
-      if (loader) loader.style.display = 'none';
-    </script>
+    <div class="floating-chatbot-btn" id="chatbotBtn">
+      <i class="fas fa-comments"></i>
+    </div>
+    <!-- Floating Chatbot Root -->
+    <div id="floating-chatbot-root" class="floating-chatbot-popup" style="display:none;"></div>
+  <!-- Floating Chatbot logic now moved to index.js -->
   </body>
   <!-- Font Awesome -->
   <script
