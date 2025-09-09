@@ -5,6 +5,7 @@ import PuskePage from "../pages/services/puskesmas/puske-page";
 import siklusPage from "../pages/services/siklus/siklus-page";
 import DewasaPage from "../pages/services/dewasa/dewasa-page";
 import BalitaPage from "../pages/services/balita/balita-page"; 
+import ChatbotPage from "../pages/chatbot/chatbot-page"; // tambahkan import
 
 const routes = {
   "/": new HomePage(),
@@ -14,6 +15,7 @@ const routes = {
   "/siklus": new siklusPage(),
   "/dewasa": new DewasaPage(),
   "/balita": new BalitaPage(),
+  "/chatbot": new ChatbotPage(), // tambahkan route chatbot
 };
 
 export default routes;

@@ -138,6 +138,10 @@ export default class HomePage {
   </div>
 </section>
 
+<div class="floating-chatbot-btn" title="Chatbot">
+  <i class="fas fa-comments"></i>
+</div>
+
     `;
   }
 
