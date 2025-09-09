@@ -111,8 +111,7 @@ class BalitaPage {
 				   <ul>
 					   <li><b>BB/U:</b> ${data.statusBBU} (Z: ${data.zScoreBBU?.toFixed(2) ?? "-"}, Rekom: ${data.rekomBBU})</li>
 					   <li><b>TB/U:</b> ${data.statusTBU} (Z: ${data.zScoreTBU?.toFixed(2) ?? "-"}, Rekom: ${data.rekomTBU})</li>
-					   <li><b>BB/TB:</b> ${data.statusBBTB} (Z: ${data.zScoreBBTB?.toFixed(2) ?? "-"}, Rekom: ${data.rekomBBTB})</li>
-					   <li><b>IMT/U:</b> ${data.statusIMTU} (Z: ${data.zScoreIMTU?.toFixed(2) ?? "-"}, Rekom: ${data.rekomIMTU})</li>
+					   <li><b>BB/TB:</b> ${data.statusIMTU} (Z: ${data.zScoreIMTU?.toFixed(2) ?? "-"}, Rekom: ${data.rekomIMTU})</li>
 				   </ul>
 			   </div>
 		   `;
