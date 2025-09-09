@@ -110,60 +110,60 @@ class BalitaPage {
   tampilkanHasilZScore(data) {
     const container =
       this._presenter._wadahHasil || document.getElementById("zscore-result");
-    container.innerHTML = `
-           <div class="hasil-zscore" style="background:#9dd53a;padding:24px;border-radius:8px;">
-               <div style="margin-bottom:16px;">
-                   <b>Anak Anda</b>
-                   <div style="display:flex;flex-wrap:wrap;gap:24px 48px;margin:8px 0 16px 0;">
-                       <div>&#8250; Jenis Kelamin : ${
-                         data.jk === "L" ? "Laki-laki" : "Perempuan"
-                       }</div>
-                       <div>&#8250; Berat Badan : ${data.bb} Kg</div>
-                       <div>&#8250; Usia : ${data.umur} Bulan</div>
-                       <div>&#8250; Tinggi Badan : ${data.tb} Cm</div>
-                   </div>
-               </div>
-               <div style="margin-bottom:16px;">
-                   <b>Berat Badan Menurut Umur</b>
-                   <div>
-                       Berat badan anak anda menurut umur <b>${
-                         data.statusBBU
-                       }</b>, ${data.rekomBBU}
-                   </div>
-                   <div style="margin-top:8px;">
-                       Rekomendasi berat badan anak seharusnya <b>${
-                         data.bbIdealBBU ?? "-"
-                       } kg</b>.
-                   </div>
-               </div>
-               <div style="margin-bottom:16px;">
-                   <b>Tinggi Badan Menurut Umur</b>
-                   <div>
-                       Tinggi badan anak anda menurut umur <b>${
-                         data.statusTBU
-                       }</b>, ${data.rekomTBU}
-                   </div>
-                   <div style="margin-top:8px;">
-                       Rekomendasi tinggi badan anak seharusnya <b>${
-                         data.tbIdealTBU ?? "-"
-                       } cm</b>.
-                   </div>
-               </div>
-               <div style="margin-bottom:16px;">
-                   <b>Berat Badan Menurut Tinggi Badan</b>
-                   <div>
-                       Berat badan anak anda menurut tinggi badan <b>${
-                         data.statusBBTB
-                       }</b>, ${data.rekomBBTB}
-                   </div>
-                   <div style="margin-top:8px;">
-                       Rekomendasi berat badan anak seharusnya <b>${
-                         data.bbIdealBBTB ?? "-"
-                       } kg</b>.
-                   </div>
-               </div>
+  // Helper untuk format 1 angka di belakang koma
+  const fmt = (v) => {
+    if (typeof v !== 'number') return v;
+    if (Number.isInteger(v)) return v;
+    return v.toFixed(1);
+  };
+  // Helper untuk bold rekomendasi jika ada dan berbeda dari input
+  const rekom = (v, input) => {
+    if (v === undefined || v === null || v === '-') return '-';
+    if (typeof v === 'number' && typeof input === 'number' && Math.abs(v - input) < 0.01) return '-';
+    return `<b>${fmt(v)}</b>`;
+  };
+  container.innerHTML = `
+       <div class="hasil-zscore" style="background:#9dd53a;padding:24px;border-radius:8px;">
+         <div style="margin-bottom:16px;">
+           <b>Anak Anda</b>
+           <div style="display:flex;flex-wrap:wrap;gap:24px 48px;margin:8px 0 16px 0;">
+             <div>&#8250; Jenis Kelamin : ${
+             data.jk === "L" ? "Laki-laki" : "Perempuan"
+             }</div>
+             <div>&#8250; Berat Badan : ${fmt(data.bb)} Kg</div>
+             <div>&#8250; Usia : ${data.umur} Bulan</div>
+             <div>&#8250; Tinggi Badan : ${fmt(data.tb)} Cm</div>
            </div>
-       `;
+         </div>
+         <div style="margin-bottom:16px;">
+           <b>Berat Badan Menurut Umur</b>
+           <div>
+             Berat badan anak anda menurut umur <b>${data.statusBBU}</b>, hasil: <b>${fmt(data.bb)}</b> kg
+           </div>
+           <div style="margin-top:8px;">
+             Rekomendasi berat badan anak seharusnya ${rekom(data.bbIdealBBU, data.bb)} kg.
+           </div>
+         </div>
+         <div style="margin-bottom:16px;">
+           <b>Tinggi Badan Menurut Umur</b>
+           <div>
+             Tinggi badan anak anda menurut umur <b>${data.statusTBU}</b>, hasil: <b>${fmt(data.tb)}</b> cm
+           </div>
+           <div style="margin-top:8px;">
+             Rekomendasi tinggi badan anak seharusnya ${rekom(data.tbIdealTBU, data.tb)} cm.
+           </div>
+         </div>
+         <div style="margin-bottom:16px;">
+           <b>Berat Badan Menurut Tinggi Badan</b>
+           <div>
+             Berat badan anak anda menurut tinggi badan <b>${data.statusBBTB}</b>, hasil: <b>${fmt(data.bb)}</b> kg
+           </div>
+           <div style="margin-top:8px;">
+             Rekomendasi berat badan anak seharusnya ${rekom(data.bbIdealBBTB, data.bb)} kg.
+           </div>
+         </div>
+       </div>
+     `;
   }
 }
 
