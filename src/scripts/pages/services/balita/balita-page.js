@@ -1,9 +1,8 @@
-
 import BalitaPresenter from "./balita-presenter.js";
 
 class BalitaPage {
-	async render() {
-		return `
+  async render() {
+    return `
 		<div class="container py-5">
 			<h2 class="section-title mb-4">Cek Kesehatan Balita</h2>
 			<form id="balita-form" class="mb-4">
@@ -48,74 +47,124 @@ class BalitaPage {
 			<div id="zscore-result"></div>
 		</div>
 		`;
-	}
+  }
 
-	async afterRender() {
-		   this._presenter = new BalitaPresenter({
-			   tampilan: this,
-			   wadahHasil: document.getElementById("zscore-result"),
-		   });
+  async afterRender() {
+    this._presenter = new BalitaPresenter({
+      tampilan: this,
+      wadahHasil: document.getElementById("zscore-result"),
+    });
 
-		const form = document.getElementById("balita-form");
-		const tglLahirInput = document.getElementById("tgl-lahir");
-		const umurInput = document.getElementById("umur");
-		const caraUkurInput = document.getElementById("cara-ukur");
+    const form = document.getElementById("balita-form");
+    const tglLahirInput = document.getElementById("tgl-lahir");
+    const umurInput = document.getElementById("umur");
+    const caraUkurInput = document.getElementById("cara-ukur");
 
-		// Hitung umur otomatis saat tanggal lahir diubah
-		tglLahirInput.addEventListener("change", () => {
-			const umurBulan = this._hitungUmurBulan(tglLahirInput.value);
-			umurInput.value = umurBulan;
-			// Tentukan cara ukur otomatis
-			if (umurBulan < 24) {
-				caraUkurInput.value = "Terentang";
-			} else {
-				caraUkurInput.value = "Berdiri";
-			}
-		});
+    // Hitung umur otomatis saat tanggal lahir diubah
+    tglLahirInput.addEventListener("change", () => {
+      const umurBulan = this._hitungUmurBulan(tglLahirInput.value);
+      umurInput.value = umurBulan;
+      // Tentukan cara ukur otomatis
+      if (umurBulan < 24) {
+        caraUkurInput.value = "Terentang";
+      } else {
+        caraUkurInput.value = "Berdiri";
+      }
+    });
 
-		   // Submit form
-		   form.addEventListener("submit", (e) => {
-			   e.preventDefault();
-			   const data = {
-				   nama: document.getElementById("nama").value,
-				   tglLahir: tglLahirInput.value,
-				   umur: parseInt(umurInput.value),
-				   jk: document.getElementById("jk").value,
-				   bb: parseFloat(document.getElementById("bb").value),
-				   tb: parseFloat(document.getElementById("tb").value),
-				   caraUkur: caraUkurInput.value,
-				   tglUk: document.getElementById("tgl-uk").value,
-			   };
-			   this._presenter.hitungZScoreAnak(data);
-		   });
-	}
+    // Submit form
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const umurValue = parseInt(umurInput.value);
+      if (isNaN(umurValue) || umurValue <= 0) {
+        alert("Tanggal lahir harus diisi dengan benar agar umur terhitung.");
+        umurInput.focus();
+        return;
+      }
+      const data = {
+        nama: document.getElementById("nama").value,
+        tglLahir: tglLahirInput.value,
+        umur: umurValue,
+        jk: document.getElementById("jk").value,
+        bb: parseFloat(document.getElementById("bb").value),
+        tb: parseFloat(document.getElementById("tb").value),
+        caraUkur: caraUkurInput.value,
+        tglUk: document.getElementById("tgl-uk").value,
+      };
+      this._presenter.hitungZScoreAnak(data);
+    });
+  }
 
-	_hitungUmurBulan(tglLahir) {
-		if (!tglLahir) return 0;
-		const lahir = new Date(tglLahir);
-		const sekarang = new Date();
-		let tahun = sekarang.getFullYear() - lahir.getFullYear();
-		let bulan = sekarang.getMonth() - lahir.getMonth();
-		let totalBulan = tahun * 12 + bulan;
-		if (sekarang.getDate() < lahir.getDate()) totalBulan--;
-		return totalBulan >= 0 ? totalBulan : 0;
-	}
+  _hitungUmurBulan(tglLahir) {
+    if (!tglLahir) return 0;
+    const lahir = new Date(tglLahir);
+    const sekarang = new Date();
+    let tahun = sekarang.getFullYear() - lahir.getFullYear();
+    let bulan = sekarang.getMonth() - lahir.getMonth();
+    let totalBulan = tahun * 12 + bulan;
+    if (sekarang.getDate() < lahir.getDate()) totalBulan--;
+    return totalBulan >= 0 ? totalBulan : 0;
+  }
 
-	   // Dipanggil oleh presenter setelah hitung Z-Score
-	   tampilkanHasilZScore(data) {
-		   // Gunakan wadah hasil yang sudah diberikan ke presenter
-		   const container = this._presenter._wadahHasil || document.getElementById("zscore-result");
-		   container.innerHTML = `
-			   <div class="hasil-zscore">
-				   <h4>Hasil Status Gizi Anak</h4>
-				   <ul>
-					   <li><b>BB/U:</b> ${data.statusBBU} (Z: ${data.zScoreBBU?.toFixed(2) ?? "-"}, Rekom: ${data.rekomBBU})</li>
-					   <li><b>TB/U:</b> ${data.statusTBU} (Z: ${data.zScoreTBU?.toFixed(2) ?? "-"}, Rekom: ${data.rekomTBU})</li>
-					   <li><b>BB/TB:</b> ${data.statusIMTU} (Z: ${data.zScoreIMTU?.toFixed(2) ?? "-"}, Rekom: ${data.rekomIMTU})</li>
-				   </ul>
-			   </div>
-		   `;
-	   }
+  // Dipanggil oleh presenter setelah hitung Z-Score
+  tampilkanHasilZScore(data) {
+    const container =
+      this._presenter._wadahHasil || document.getElementById("zscore-result");
+    container.innerHTML = `
+           <div class="hasil-zscore" style="background:#9dd53a;padding:24px;border-radius:8px;">
+               <div style="margin-bottom:16px;">
+                   <b>Anak Anda</b>
+                   <div style="display:flex;flex-wrap:wrap;gap:24px 48px;margin:8px 0 16px 0;">
+                       <div>&#8250; Jenis Kelamin : ${
+                         data.jk === "L" ? "Laki-laki" : "Perempuan"
+                       }</div>
+                       <div>&#8250; Berat Badan : ${data.bb} Kg</div>
+                       <div>&#8250; Usia : ${data.umur} Bulan</div>
+                       <div>&#8250; Tinggi Badan : ${data.tb} Cm</div>
+                   </div>
+               </div>
+               <div style="margin-bottom:16px;">
+                   <b>Berat Badan Menurut Umur</b>
+                   <div>
+                       Berat badan anak anda menurut umur <b>${
+                         data.statusBBU
+                       }</b>, ${data.rekomBBU}
+                   </div>
+                   <div style="margin-top:8px;">
+                       Rekomendasi berat badan anak seharusnya <b>${
+                         data.bbIdealBBU ?? "-"
+                       } kg</b>.
+                   </div>
+               </div>
+               <div style="margin-bottom:16px;">
+                   <b>Tinggi Badan Menurut Umur</b>
+                   <div>
+                       Tinggi badan anak anda menurut umur <b>${
+                         data.statusTBU
+                       }</b>, ${data.rekomTBU}
+                   </div>
+                   <div style="margin-top:8px;">
+                       Rekomendasi tinggi badan anak seharusnya <b>${
+                         data.tbIdealTBU ?? "-"
+                       } cm</b>.
+                   </div>
+               </div>
+               <div style="margin-bottom:16px;">
+                   <b>Berat Badan Menurut Tinggi Badan</b>
+                   <div>
+                       Berat badan anak anda menurut tinggi badan <b>${
+                         data.statusBBTB
+                       }</b>, ${data.rekomBBTB}
+                   </div>
+                   <div style="margin-top:8px;">
+                       Rekomendasi berat badan anak seharusnya <b>${
+                         data.bbIdealBBTB ?? "-"
+                       } kg</b>.
+                   </div>
+               </div>
+           </div>
+       `;
+  }
 }
 
 export default BalitaPage;
