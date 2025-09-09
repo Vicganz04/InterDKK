@@ -49,41 +49,23 @@ class BalitaPresenter {
   }
 
   hitungZScoreAnak({ jk, umur, bb, tb, caraUkur }) {
-    // Validasi input
-    if (
-      !jk ||
-      !umur ||
-      isNaN(umur) ||
-      umur <= 0 ||
-      !bb ||
-      !tb ||
-      bb <= 0 ||
-      tb <= 0
-    ) {
-      this._tampilan.tampilkanHasilZScore({
-        bb: bb ?? "-",
-        tb: tb ?? "-",
-        umur: umur ?? "-",
-        jk: jk === "L" ? "Laki-laki" : jk === "P" ? "Perempuan" : "-",
-        statusBBU: "-",
-        rekomBBU: "Data tidak tersedia",
-        statusTBU: "-",
-        rekomTBU: "Data tidak tersedia",
-        statusBBTB: "-",
-        rekomBBTB: "Data tidak tersedia",
-        statusIMTU: "-",
-        rekomIMTU: "Data tidak tersedia",
-      });
-      return;
-    }
-    // Key pada JSON adalah "L"/"P", bukan 1/2
     const jenisKelamin = jk === "L" ? "L" : "P";
-    function dapatkanLMS(json, kunci, jenisKelamin) {
+    function dapatkanLMSObj(json, kunci, jenisKelamin) {
       const keyStr = String(kunci);
       if (json && json[jenisKelamin] && json[jenisKelamin][keyStr]) {
         return json[jenisKelamin][keyStr];
       }
       return null;
+    }
+    function dapatkanLMSArray(json, tb, jenisKelamin) {
+      // SEX: 1 = Laki-laki, 2 = Perempuan
+      const sexNum = jenisKelamin === "L" ? 1 : 2;
+      // Cari entry dengan LENGTH2 paling mendekati tb (toleransi 0.1 cm)
+      return (
+        json.find(
+          (item) => item.SEX === sexNum && Math.abs(item.LENGTH2 - tb) < 0.11
+        ) || null
+      );
     }
     function hitungZScore(x, L, M, S) {
       if (L === 0) {
@@ -93,19 +75,19 @@ class BalitaPresenter {
       }
     }
     // BB/U
-    const lmsBBU = dapatkanLMS(wazlms, umur, jenisKelamin);
+    const lmsBBU = dapatkanLMSObj(wazlms, umur, jenisKelamin);
     // TB/U
-    const lmsTBU = dapatkanLMS(hazlms, umur, jenisKelamin);
+    const lmsTBU = dapatkanLMSObj(hazlms, umur, jenisKelamin);
     // BB/PB atau BB/TB
     let lmsBBTB;
     if (caraUkur.includes("Terentang")) {
-      lmsBBTB = dapatkanLMS(wfllms, tb, jenisKelamin);
+      lmsBBTB = dapatkanLMSArray(wfllms, tb, jenisKelamin);
     } else {
-      lmsBBTB = dapatkanLMS(wfhlms, tb, jenisKelamin);
+      lmsBBTB = dapatkanLMSArray(wfhlms, tb, jenisKelamin);
     }
     // IMT/U
     const imt = bb / Math.pow(tb / 100, 2);
-    const lmsIMTU = dapatkanLMS(bmilms, umur, jenisKelamin);
+    const lmsIMTU = dapatkanLMSObj(bmilms, umur, jenisKelamin);
     const zScoreBBU = lmsBBU
       ? hitungZScore(bb, lmsBBU.L, lmsBBU.M, lmsBBU.S)
       : null;
@@ -152,24 +134,35 @@ class BalitaPresenter {
       else if (zScoreIMTU > 2 && zScoreIMTU <= 3) statusIMTU = "Gizi Lebih";
       else if (zScoreIMTU > 3) statusIMTU = "Obesitas";
     }
+
+    let rekomBBTB = "-";
+    let bbIdealBBTB = "-";
+    if (lmsBBTB && lmsBBTB.M) {
+      rekomBBTB = lmsBBTB.M;
+      bbIdealBBTB = lmsBBTB.M;
+    }
+
     this._tampilan.tampilkanHasilZScore({
+      jk,
+      umur,
       bb,
       tb,
       imt,
-      umur,
-      jk: jenisKelamin === "L" ? "Laki-laki" : "Perempuan",
       zScoreBBU,
       statusBBU,
-      rekomBBU: lmsBBU ? lmsBBU.M : "Data tidak tersedia",
+      rekomBBU: lmsBBU && lmsBBU.M ? lmsBBU.M : "-",
+      bbIdealBBU: lmsBBU && lmsBBU.M ? lmsBBU.M : "-",
       zScoreTBU,
       statusTBU,
-      rekomTBU: lmsTBU ? lmsTBU.M : "Data tidak tersedia",
+      rekomTBU: lmsTBU && lmsTBU.M ? lmsTBU.M : "-",
+      tbIdealTBU: lmsTBU && lmsTBU.M ? lmsTBU.M : "-",
       zScoreBBTB,
       statusBBTB,
-      rekomBBTB: lmsBBTB ? lmsBBTB.M : "Data tidak tersedia",
+      rekomBBTB,
+      bbIdealBBTB,
       zScoreIMTU,
       statusIMTU,
-      rekomIMTU: lmsIMTU ? lmsIMTU.M : "Data tidak tersedia",
+      rekomIMTU: lmsIMTU && lmsIMTU.M ? lmsIMTU.M : "-",
     });
   }
 }
