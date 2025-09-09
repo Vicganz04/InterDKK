@@ -62,7 +62,7 @@ class ServicesPage {
                    <i class="fas fa-baby fa-3x mb-3" style="color: #6ebe77;"></i>
                   <h5 class="card-title fw-bold mb-2">Cek Kesehatan Balita</h5>
                   <p class="card-text text-muted">Pantau status gizi, pertumbuhan, dan kesehatan balita Anda secara menyeluruh.</p>
-                  <a href="#/imt" class="btn btn-success">Cek Balita</a>
+                  <a href="#/balita" class="btn btn-success">Cek Balita</a>
               </div>
             </div>
           </div>

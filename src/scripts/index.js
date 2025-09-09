@@ -12,22 +12,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     content: document.querySelector("#main-content"),
   });
 
-  const initialRender = async () => {
-    await app.renderPage();
-    // Sembunyikan loader setelah render awal selesai
-    const loader = document.querySelector(".bg-loader");
-    if (loader) {
-      loader.style.display = "none";
-    }
-    // Update tahun di footer
-    const footerYear = document.getElementById("footer-year");
-    if (footerYear) {
-      footerYear.textContent = new Date().getFullYear();
-    }
-  };
+  await app.renderPage();
 
-  // Langsung render saat DOM siap
-  await initialRender();
+  // Hide loader
+  const loader = document.querySelector('.bg-loader');
+  if (loader) loader.style.display = 'none';
 
   window.addEventListener("hashchange", async () => {
     await app.renderPage();

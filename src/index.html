@@ -125,6 +125,11 @@
         </div>
       </div>
     </footer>
+    <script>
+      // Setelah konten utama selesai dirender (misal di App.renderPage() setelah await page.afterRender())
+      const loader = document.querySelector('.bg-loader');
+      if (loader) loader.style.display = 'none';
+    </script>
   </body>
   <!-- Font Awesome -->
   <script
