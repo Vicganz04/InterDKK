@@ -170,5 +170,23 @@ export default class HomePage {
 
   async afterRender() {
     this.#presenter = new HomePresenter({ view: this });
+    setTimeout(restartHeroAnimations, 50);
+  }
+}
+
+// Fungsi global, letakkan di luar class!
+function restartHeroAnimations() {
+  // Restart SVG <animate> (wave background)
+  const heroWaveSVGs = document.querySelectorAll('.hero-animated-bg svg animate');
+  heroWaveSVGs.forEach(anim => {
+    anim.beginElement && anim.beginElement();
+  });
+  // Restart CSS animation pada gambar ilustrasi
+  const heroImg = document.querySelector('.hero-float-img');
+  if (heroImg) {
+    heroImg.style.animation = 'none';
+    // Force reflow
+    void heroImg.offsetWidth;
+    heroImg.style.animation = '';
   }
 }

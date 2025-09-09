@@ -1,3 +1,20 @@
+/* Hero Illustration Floating Animation */
+.hero-illustration {
+  position: relative;
+  min-height: 220px;
+}
+.hero-float-img {
+  animation: heroFloat 3.8s ease-in-out infinite alternate, heroRotate 7s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes heroFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-22px); }
+}
+@keyframes heroRotate {
+  0% { transform: rotate(-2deg); }
+  100% { transform: rotate(2deg); }
+}
 .hero-wave-top {
   position: absolute;
   left: 0; top: 0; width: 100%; height: 90px;

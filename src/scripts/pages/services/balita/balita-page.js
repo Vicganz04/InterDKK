@@ -116,10 +116,9 @@ class BalitaPage {
     if (Number.isInteger(v)) return v;
     return v.toFixed(1);
   };
-  // Helper untuk bold rekomendasi jika ada dan berbeda dari input
-  const rekom = (v, input) => {
+  // Helper untuk bold rekomendasi jika ada (selalu tampilkan, meskipun sama dengan input)
+  const rekom = (v) => {
     if (v === undefined || v === null || v === '-') return '-';
-    if (typeof v === 'number' && typeof input === 'number' && Math.abs(v - input) < 0.01) return '-';
     return `<b>${fmt(v)}</b>`;
   };
   container.innerHTML = `
@@ -141,7 +140,7 @@ class BalitaPage {
              Berat badan anak anda menurut umur <b>${data.statusBBU}</b>, hasil: <b>${fmt(data.bb)}</b> kg
            </div>
            <div style="margin-top:8px;">
-             Rekomendasi berat badan anak seharusnya ${rekom(data.bbIdealBBU, data.bb)} kg.
+             Rekomendasi berat badan anak seharusnya ${rekom(data.bbIdealBBU)} kg.
            </div>
          </div>
          <div style="margin-bottom:16px;">
@@ -150,7 +149,7 @@ class BalitaPage {
              Tinggi badan anak anda menurut umur <b>${data.statusTBU}</b>, hasil: <b>${fmt(data.tb)}</b> cm
            </div>
            <div style="margin-top:8px;">
-             Rekomendasi tinggi badan anak seharusnya ${rekom(data.tbIdealTBU, data.tb)} cm.
+             Rekomendasi tinggi badan anak seharusnya ${rekom(data.tbIdealTBU)} cm.
            </div>
          </div>
          <div style="margin-bottom:16px;">
@@ -159,7 +158,7 @@ class BalitaPage {
              Berat badan anak anda menurut tinggi badan <b>${data.statusBBTB}</b>, hasil: <b>${fmt(data.bb)}</b> kg
            </div>
            <div style="margin-top:8px;">
-             Rekomendasi berat badan anak seharusnya ${rekom(data.bbIdealBBTB, data.bb)} kg.
+             Rekomendasi berat badan anak seharusnya ${rekom(data.bbIdealBBTB)} kg.
            </div>
          </div>
        </div>
