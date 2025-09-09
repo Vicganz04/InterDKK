@@ -114,18 +114,23 @@ class BalitaPresenter {
 		       else if (zScoreIMTU > 3) statusIMTU = "Obesitas";
 	       }
 	       this._tampilan.tampilkanHasilZScore({
+		       jk,
+		       umur,
 		       bb,
 		       tb,
 		       imt,
 		       zScoreBBU,
 		       statusBBU,
 		       rekomBBU: lmsBBU ? lmsBBU.M : "-",
+		       bbIdealBBU: lmsBBU ? lmsBBU.M : "-",
 		       zScoreTBU,
 		       statusTBU,
 		       rekomTBU: lmsTBU ? lmsTBU.M : "-",
+		       tbIdealTBU: lmsTBU ? lmsTBU.M : "-",
 		       zScoreBBTB,
 		       statusBBTB,
 		       rekomBBTB: lmsBBTB ? lmsBBTB.M : "-",
+		       bbIdealBBTB: lmsBBTB ? lmsBBTB.M : "-",
 		       zScoreIMTU,
 		       statusIMTU,
 		       rekomIMTU: lmsIMTU ? lmsIMTU.M : "-",
