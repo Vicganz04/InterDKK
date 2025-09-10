@@ -3,7 +3,7 @@ export default class ChatbotPage {
     return `
       <div class="chat-container">
         <div class="chat-header">
-          <h2>SICIKI</h2>
+          <h2>HEALBOT</h2>
         </div>
         <div id="chat-box" class="chat-box"></div>
         <div class="chat-input">
@@ -29,12 +29,11 @@ export default class ChatbotPage {
     }
 
     // Pesan awal chatbot
-    appendMessage("bot", "Halo! Saya Chatbot Gizi 🌱. Saya bisa membantu menjawab pertanyaan tentang gizi, stunting, IMT, dan kebutuhan kalori.");
+    appendMessage("bot", "Halo! Saya HealBot 🌱. Saya bisa membantu menjawab pertanyaan tentang gizi, stunting, IMT, dan kebutuhan kalori.");
     appendMessage("bot", `
       Contoh pertanyaan:<br>
       - Apa itu stunting?<br>
       - Bagaimana cara mencegah stunting?<br>
-      - Cara menghitung IMT saya<br>
       - Kebutuhan kalori harian
     `);
 
@@ -52,7 +51,7 @@ export default class ChatbotPage {
       appendMessage("user", message);
       userInput.value = "";
 
-      appendMessage("bot", "Bot sedang memproses...");
+      appendMessage("bot", "Bot sedang mencari jawaban ...");
 
       try {
         const response = await fetch("http://127.0.0.1:5000/chat", {

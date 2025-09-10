@@ -28,9 +28,15 @@
   pointer-events: none;
 }
 .hero-section {
-  /* ...existing code... */
-  padding-bottom: 0;
-  min-height: 440px;
+  position: relative;
+  background: #77c685;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 64px 0 32px 0;
+  overflow: hidden;
 }
 /* --- HERO SECTION ANIMASI & LANDING PAGE EFFECTS --- */
 .hero-animated-bg {
@@ -44,7 +50,7 @@
 }
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #e6fbe8 0%, #f8fafd 100%);
+  background: #77c685;
   min-height: 420px;
   display: flex;
   flex-direction: column;
@@ -147,9 +153,9 @@ html::-webkit-scrollbar-thumb {
 
 html,
 body {
+  margin: 0;
+  padding: 0;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .bg-loader {
@@ -187,11 +193,9 @@ body {
 
 /* Navbar Styles - Animated Gradient Background */
 .navbar-light {
-  background: linear-gradient(90deg, #ebf5ec 0%, #b6e2c6 50%, #ebf5ec 100%);
-  background-size: 200% 200%;
-  animation: navbarGradientMove 8s ease-in-out infinite;
-  border-radius: 0 0 32px 32px;
-  box-shadow: 0 2px 16px 0 rgba(44,62,80,0.07);
+  background: #77c685;
+  border-radius: 0;
+  box-shadow: none;
 }
 @keyframes navbarGradientMove {
   0% { background-position: 0% 50%; }
@@ -199,12 +203,13 @@ body {
   100% { background-position: 0% 50%; }
 }
 
+
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .show > .nav-link {
-  color: #104f1f;
+  color: #fff;
 }
 .navbar-light .navbar-nav .nav-link {
-  color: #94baa3;
+  color: #f4fdf7;
   transition: transform 0.22s cubic-bezier(.4,1.5,.5,1), color 0.18s;
   position: relative;
   z-index: 1;
@@ -218,7 +223,9 @@ body {
 }
 
 /* Brand highlight effect */
+
 .navbar-light .navbar-brand {
+  color: #fff;
   transition: text-shadow 0.3s, filter 0.3s;
   position: relative;
   z-index: 2;
