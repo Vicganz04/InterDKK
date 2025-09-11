@@ -1,10 +1,9 @@
-import HomePresenter from './home-presenter.js';
+import HomePresenter from "./home-presenter.js";
 
 export default class HomePage {
   #presenter;
 
   async render() {
-
     return `
 <!-- Hero Section with Live Wallpaper -->
 <section class="hero-section py-5 section-bg" style="position:relative; min-height: 672px; overflow:hidden; background:linear-gradient(120deg,#6ebe77 60%,#b6e2c6 100%);">
@@ -38,7 +37,7 @@ export default class HomePage {
     <div class="row align-items-center">
       <div class="col-lg-6 col-md-7 text-white px-5 py-4">
         <h2 class="fw-bold mb-3" style="font-size:2.7rem;line-height:1.15;">
-          Nutricek – Layanan Pemeriksaan Kesehatan Mandiri Secara Online
+          HealthMate – Layanan Pemeriksaan Kesehatan Mandiri Secara Online
         </h2>
         <p class="lead mb-4" style="font-size:1.25rem;">
           Platform daring yang menyediakan layanan pemeriksaan kesehatan balita maupun dewasa, serta informasi kesehatan masyarakat Kota Semarang.
@@ -177,16 +176,18 @@ export default class HomePage {
 // Fungsi global, letakkan di luar class!
 function restartHeroAnimations() {
   // Restart SVG <animate> (wave background)
-  const heroWaveSVGs = document.querySelectorAll('.hero-animated-bg svg animate');
-  heroWaveSVGs.forEach(anim => {
+  const heroWaveSVGs = document.querySelectorAll(
+    ".hero-animated-bg svg animate"
+  );
+  heroWaveSVGs.forEach((anim) => {
     anim.beginElement && anim.beginElement();
   });
   // Restart CSS animation pada gambar ilustrasi
-  const heroImg = document.querySelector('.hero-float-img');
+  const heroImg = document.querySelector(".hero-float-img");
   if (heroImg) {
-    heroImg.style.animation = 'none';
+    heroImg.style.animation = "none";
     // Force reflow
     void heroImg.offsetWidth;
-    heroImg.style.animation = '';
+    heroImg.style.animation = "";
   }
 }
