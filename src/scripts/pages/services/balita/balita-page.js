@@ -42,7 +42,7 @@ class BalitaPage {
 					<label for="tgl-uk" class="form-label">Tanggal Pengukuran Terakhir</label>
 					<input type="date" class="form-control" id="tgl-uk" required />
 				</div>
-				<button type="submit" class="btn btn-primary">Hitung Z-Score</button>
+				<button type="submit" class="btn btn-primary">Cek Sekarang</button>
 			</form>
 			<div id="zscore-result"></div>
 		</div>
