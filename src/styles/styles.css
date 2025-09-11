@@ -192,8 +192,14 @@ body {
 /* Navbar Styles */
 
 /* Navbar Styles - Animated Gradient Background */
+/* Custom Navbar Color (different from landing page) */
+.custom-navbar {
+  background: #e6fbe8 !important; /* hijau muda soft, selaras tema tapi tidak terlalu hijau */
+  border-radius: 0;
+  box-shadow: 0 2px 12px #b6e2c633;
+}
 .navbar-light {
-  background: #77c685;
+  background: none;
   border-radius: 0;
   box-shadow: none;
 }
@@ -206,19 +212,25 @@ body {
 
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .show > .nav-link {
-  color: #fff;
+  color: #fff !important;
+  background: #43e97b !important;
+  border-radius: 7px;
 }
 .navbar-light .navbar-nav .nav-link {
-  color: #f4fdf7;
-  transition: transform 0.22s cubic-bezier(.4,1.5,.5,1), color 0.18s;
+  color: #104f1f; /* hijau gelap, kontras dengan navbar putih */
+  background: transparent;
+  border-radius: 7px;
+  padding: 6px 16px;
+  margin: 0 0.6rem;
+  transition: background 0.18s, color 0.18s, transform 0.22s cubic-bezier(.4,1.5,.5,1);
   position: relative;
   z-index: 1;
-  margin: 0 0.6rem;
 }
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link:focus {
-  color: #104f1f;
-  transform: scale(1.18) translateY(-2px);
+  color: #fff;
+  background: #43e97b; /* hijau terang saat hover */
+  transform: scale(1.12) translateY(-2px);
   z-index: 2;
 }
 

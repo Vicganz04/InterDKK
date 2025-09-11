@@ -11,15 +11,15 @@ class DewasaPage {
 				<h2 class="section-title mb-4">Cek IMT Dewasa</h2>
 				<form id="dewasa-form" class="mb-4">
 					<div class="mb-3">
-						<label for="nama" class="form-label">Nama (opsional)</label>
+						<label for="nama" class="form-label">Nama</label>
 						<input type="text" class="form-control" id="nama" />
 					</div>
 					<div class="mb-3">
-						<label for="age" class="form-label">Usia (opsional)</label>
+						<label for="age" class="form-label">Usia </label>
 						<input type="number" class="form-control" id="age" min="1" step="1" />
 					</div>
 					<div class="mb-3">
-						<label for="gender" class="form-label">Jenis Kelamin (opsional)</label>
+						<label for="gender" class="form-label">Jenis Kelamin </label>
 						<select class="form-control" id="gender">
 							<option value="">Pilih</option>
 							<option value="male">Pria</option>
