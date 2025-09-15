@@ -135,6 +135,8 @@ class BalitaPage {
               <li>Perbaiki pola makan dengan gizi tinggi energi &amp; protein (daging, ikan, telur, susu).</li>
               <li>Pantau pertumbuhan anak secara berkala di posyandu/puskesmas.</li>
               <li>Jaga kebersihan makanan &amp; lingkungan untuk mencegah infeksi.</li>
+              <li>🧼 Biasakan cuci tangan pakai sabun sebelum makan.</li>
+              <li>💧 Pastikan air minum yang digunakan bersih dan layak konsumsi.</li>
             </ul>
           </div>
         `,
@@ -151,6 +153,8 @@ class BalitaPage {
               <li>Pastikan anak cukup tidur &amp; aktif bergerak.</li>
               <li>Berikan suplemen vitamin/mineral bila direkomendasikan tenaga kesehatan.</li>
               <li>Rutin cek pertumbuhan untuk mencegah kondisi memburuk.</li>
+              <li>🚮 Buang sampah pada tempatnya agar lingkungan tetap sehat.</li>
+              <li>📢 Ikuti penyuluhan kesehatan di posyandu/puskesmas.</li>
             </ul>
           </div>
         `,
@@ -167,6 +171,8 @@ class BalitaPage {
               <li>Ajak anak tetap aktif dengan olahraga ringan &amp; permainan fisik.</li>
               <li>Lanjutkan pemantauan pertumbuhan rutin.</li>
               <li>Hindari kebiasaan makan berlebihan atau camilan tidak sehat.</li>
+              <li>💉 Pastikan imunisasi lengkap sesuai usia anak.</li>
+              <li>🌳 Jaga kebersihan lingkungan rumah dan halaman agar bebas jentik nyamuk.</li>
             </ul>
           </div>
         `,
@@ -183,6 +189,8 @@ class BalitaPage {
               <li>Tingkatkan aktivitas fisik anak minimal 1 jam per hari.</li>
               <li>Atur porsi makan sesuai kebutuhan energi, jangan berlebihan.</li>
               <li>Perbanyak konsumsi sayur, buah, dan air putih.</li>
+              <li>🚭 Hindari paparan asap rokok di rumah.</li>
+              <li>📚 Ikut program promosi kesehatan tentang pola makan sehat.</li>
             </ul>
           </div>
         `,
@@ -203,8 +211,10 @@ class BalitaPage {
               <li>Segera konsultasikan ke tenaga kesehatan untuk intervensi gizi khusus.</li>
               <li>Pastikan anak mendapat protein hewani cukup (ikan, telur, daging, susu).</li>
               <li>Berikan makanan padat gizi sejak MPASI dengan variasi karbohidrat, protein, sayur, buah.</li>
-              <li>Cegah infeksi berulang (melalui imunisasi, sanitasi, dan kebersihan makanan).</li>
+              <li>Cegah infeksi berulang (imunisasi, sanitasi, kebersihan makanan).</li>
               <li>Pantau pertumbuhan secara rutin di posyandu/puskesmas.</li>
+              <li>💧 Gunakan jamban sehat dan air bersih.</li>
+              <li>📢 Ikuti penyuluhan kesehatan tentang pencegahan stunting.</li>
             </ul>
           </div>
         `,
@@ -221,6 +231,8 @@ class BalitaPage {
               <li>Lakukan stimulasi tumbuh kembang (permainan edukatif, aktivitas fisik ringan).</li>
               <li>Pastikan anak tidak sering sakit (jaga pola tidur, kebersihan, imunisasi lengkap).</li>
               <li>Konsultasi dini dengan ahli gizi/dokter untuk mencegah stunting.</li>
+              <li>🚮 Jaga kebersihan lingkungan sekitar agar bebas dari sampah & vektor penyakit.</li>
+              <li>📚 Ikut edukasi kesehatan di posyandu tentang gizi seimbang.</li>
             </ul>
           </div>
         `,
@@ -237,6 +249,8 @@ class BalitaPage {
               <li>Ajak anak tetap aktif berolahraga/bermain di luar.</li>
               <li>Terus pantau tinggi badan sesuai grafik pertumbuhan WHO.</li>
               <li>Hindari kebiasaan makan yang buruk (camilan tidak sehat, minuman bersoda).</li>
+              <li>🌳 Rawat halaman rumah agar bebas jentik nyamuk.</li>
+              <li>📢 Ikuti kampanye kesehatan sekolah atau lingkungan.</li>
             </ul>
           </div>
         `,
@@ -253,6 +267,8 @@ class BalitaPage {
               <li>Pastikan kebutuhan energi tercukupi agar tidak hanya tinggi tapi juga sehat.</li>
               <li>Dorong aktivitas fisik untuk menjaga kekuatan tulang & otot.</li>
               <li>Lanjutkan pola makan sehat dan gizi seimbang.</li>
+              <li>🧼 Biasakan cuci tangan pakai sabun.</li>
+              <li>💧 Gunakan air bersih untuk minum dan masak.</li>
             </ul>
           </div>
         `,
@@ -274,6 +290,8 @@ class BalitaPage {
               <li>Tingkatkan asupan energi &amp; protein (susu, daging, telur, ikan).</li>
               <li>Pastikan anak tidak sering terkena infeksi (jaga kebersihan &amp; imunisasi).</li>
               <li>Pantau berat &amp; tinggi badan lebih sering.</li>
+              <li>🚭 Hindari asap rokok di rumah.</li>
+              <li>💧 Pastikan jamban sehat digunakan di rumah.</li>
             </ul>
           </div>
         `,
@@ -290,6 +308,8 @@ class BalitaPage {
               <li>Berikan makanan lebih sering dengan porsi kecil tapi bergizi.</li>
               <li>Cegah penyakit berulang dengan sanitasi baik.</li>
               <li>Rutin pantau pertumbuhan di posyandu/puskesmas.</li>
+              <li>📚 Ikuti penyuluhan tentang gizi seimbang.</li>
+              <li>🚮 Kelola sampah rumah tangga dengan benar.</li>
             </ul>
           </div>
         `,
@@ -305,6 +325,8 @@ class BalitaPage {
               <li>Pertahankan pola makan sehat &amp; seimbang.</li>
               <li>Dorong anak tetap aktif bermain &amp; olahraga ringan.</li>
               <li>Pantau pertumbuhan secara berkala untuk memastikan tetap ideal.</li>
+              <li>🌳 Jaga lingkungan rumah agar sehat.</li>
+              <li>📢 Ikut kampanye kesehatan sekolah/masyarakat.</li>
             </ul>
           </div>
         `,
@@ -321,6 +343,8 @@ class BalitaPage {
               <li>Kurangi makanan manis, gorengan, dan minuman bersoda.</li>
               <li>Perbanyak buah, sayur, dan air putih.</li>
               <li>Tingkatkan aktivitas fisik harian (bermain aktif, olahraga ringan).</li>
+              <li>🚭 Terapkan rumah bebas asap rokok.</li>
+              <li>🚮 Pastikan lingkungan sekitar bersih dari sampah menumpuk.</li>
             </ul>
           </div>
         `,
@@ -337,6 +361,8 @@ class BalitaPage {
               <li>Terapkan pola makan seimbang dengan lebih banyak sayur &amp; buah.</li>
               <li>Rutin olahraga/aktivitas fisik sesuai usia.</li>
               <li>Konsultasi dengan ahli gizi bila perlu untuk rencana diet sehat.</li>
+              <li>💧 Minum air bersih yang cukup setiap hari.</li>
+              <li>📢 Ikuti penyuluhan gaya hidup sehat.</li>
             </ul>
           </div>
         `,
@@ -353,6 +379,8 @@ class BalitaPage {
               <li>Terapkan diet rendah kalori tapi tetap bergizi seimbang.</li>
               <li>Batasi screen time &amp; dorong aktivitas fisik rutin.</li>
               <li>Edukasi keluarga tentang pola makan sehat agar konsisten di rumah.</li>
+              <li>🚮 Pastikan lingkungan bebas dari sarang nyamuk &amp; sampah.</li>
+              <li>📢 Ikuti kampanye kesehatan tentang obesitas &amp; penyakit tidak menular.</li>
             </ul>
           </div>
         `,
