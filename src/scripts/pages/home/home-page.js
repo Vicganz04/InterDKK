@@ -54,7 +54,7 @@ export default class HomePage {
           <a href="#/puskesmas" class="btn btn-info px-4 py-2 text-white fw-semibold" style="min-width:200px;">
             Informasi Puskesmas
           </a>
-          <a href="#/haid" class="btn btn-warning px-4 py-2 text-dark fw-semibold" style="min-width:200px;">
+          <a href="#/siklus" class="btn btn-warning px-4 py-2 text-dark fw-semibold" style="min-width:200px;">
             Siklus Haid
           </a>
         </div>
@@ -100,7 +100,7 @@ export default class HomePage {
           <img src="/menstrual.png" alt="Siklus Haid" style="height:45px;width:auto;object-fit:contain;opacity:0.50;" class="mb-3 mx-auto">
           <h5 class="fw-bold mb-2">Pemantauan Siklus Haid</h5>
           <p class="mb-3">Memfasilitasi pencatatan serta pemantauan siklus haid untuk mendukung kesehatan reproduksi perempuan.</p>
-          <a href="#/haid" class="fw-semibold text-success">Read more &gt;</a>
+          <a href="#/siklus" class="fw-semibold text-success">Read more &gt;</a>
         </div>
       </div>
     </div>
