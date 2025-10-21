@@ -109,7 +109,7 @@ class BalitaPresenter {
     }
     let statusTBU = "-";
     if (zScoreTBU !== null) {
-      if (zScoreTBU < -3) statusTBU = "Sangat Pendek";
+      if (zScoreTBU < -3) statusTBU = "Tinggi Badan Kurang";
       else if (zScoreTBU >= -3 && zScoreTBU < -2) statusTBU = "Pendek";
       else if (zScoreTBU > 3) statusTBU = "Tinggi";
       else statusTBU = "Normal";
