@@ -2,7 +2,7 @@ import DewasaPresenter from "./dewasa-presenter";
 
 class DewasaPage {
   constructor() {
-    this._presenter = null;
+    this._present
   }
 
   async render() {
@@ -65,7 +65,7 @@ class DewasaPage {
   tampilkanHasilIMT({ nama, age, gender, imt, status, saran, warna }) {
     // Mapping status ke warna, ikon, dan saran pencegahan
     const imtStatusMap = {
-        Kurus: {
+        "Berat Badan Kurang": {
     color: "#E74C3C",
     icon: "🔴",
     advice: `
@@ -97,7 +97,7 @@ class DewasaPage {
       </ul>
     `,
   },
-  Overweight: {
+  "Berat Badan Lebih": {
     color: "#F1C40F",
     icon: "🟡",
     advice: `
@@ -168,24 +168,19 @@ class DewasaPage {
       advice: "",
     };
 
+    // Ubah: gunakan latar abu-abu netral untuk kotak, dan tunjukkan warna status sebagai garis kiri + lingkaran kecil
     document.getElementById("dewasa-result").innerHTML = `
-      <div class="card card-result mt-3" style="background:${imtStatus.color};">
-        <div class="card-body">
+      <div class="card card-result mt-3" style="background:#f7f7f7; border-left:6px solid ${imtStatus.color};">
+        <div class="card-body" style="color:#222;">
           <h5 class="card-title">Hasil IMT Dewasa</h5>
           ${nama ? `<p class="mb-1"><strong>Nama:</strong> ${nama}</p>` : ""}
-          ${
-            age ? `<p class="mb-1"><strong>Usia:</strong> ${age} tahun</p>` : ""
-          }
-          ${
-            gender
-              ? `<p class="mb-1"><strong>Jenis Kelamin:</strong> ${
-                  gender === "male" ? "Pria" : "Wanita"
-                }</p>`
-              : ""
-          }
-          <p class="mb-1"><strong>Status Gizi:</strong> <span style="font-size:1.2em;">${
-            imtStatus.icon
-          }</span> <b>${status}</b></p>
+          ${ age ? `<p class="mb-1"><strong>Usia:</strong> ${age} tahun</p>` : "" }
+          ${ gender ? `<p class="mb-1"><strong>Jenis Kelamin:</strong> ${gender === "male" ? "Pria" : "Wanita"}</p>` : "" }
+          <p class="mb-1">
+            <strong>Status Gizi:</strong>
+            <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${imtStatus.color};margin:0 8px 0 8px;vertical-align:middle;"></span>
+            <b>${status}</b>
+          </p>
           <p class="mb-1"><strong>IMT:</strong> ${imt}</p>
           ${imtStatus.advice}
         </div>

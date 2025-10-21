@@ -29,7 +29,7 @@ class DewasaPresenter {
     let saran = "";
 
     if (imtValue < 18.5) {
-      status = "Kurus";
+      status = "Berat Badan Kurang";
       warna = "#E74C3C";
       saran =
         "Perbanyak asupan kalori dan protein (nasi, roti, daging, ikan, telur, susu). Makan lebih sering dengan porsi kecil tapi bergizi. Hindari stres berlebih dan pastikan cukup tidur. Konsultasi dengan ahli gizi bila penurunan berat badan signifikan.";
@@ -39,7 +39,7 @@ class DewasaPresenter {
       saran =
         "Pertahankan pola makan gizi seimbang. Olahraga teratur (150 menit/minggu aktivitas sedang). Jaga kualitas tidur & hidrasi cukup. Lakukan cek kesehatan rutin setahun sekali.";
     } else if (imtValue >= 25 && imtValue < 30) {
-      status = "Overweight";
+      status = "Berat Badan Lebih";
       warna = "#F1C40F";
       saran =
         "Kurangi makanan tinggi lemak, gula, dan garam. Tingkatkan aktivitas fisik (jalan cepat, bersepeda, renang). Atur porsi makan dan kurangi camilan berkalori tinggi. Pantau berat badan secara berkala.";
