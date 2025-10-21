@@ -65,72 +65,89 @@ class DewasaPage {
   tampilkanHasilIMT({ nama, age, gender, imt, status, saran, warna }) {
     // Mapping status ke warna, ikon, dan saran pencegahan
     const imtStatusMap = {
-      Kurus: {
-        color: "#E74C3C",
-        icon: "🔴",
-        advice: `
-          <b>Saran Pencegahan:</b>
-          <ul style="margin:8px 0 0 18px;">
-            <li>Perbanyak asupan kalori dan protein (nasi, roti, daging, ikan, telur, susu).</li>
-            <li>Makan lebih sering dengan porsi kecil tapi bergizi.</li>
-            <li>Hindari stres berlebih dan pastikan cukup tidur.</li>
-            <li>Konsultasi dengan ahli gizi bila penurunan berat badan signifikan.</li>
-          </ul>
-        `,
-      },
-      Normal: {
-        color: "#2ECC71",
-        icon: "🟢",
-        advice: `
-          <b>Saran Pencegahan:</b>
-          <ul style="margin:8px 0 0 18px;">
-            <li>Pertahankan pola makan gizi seimbang.</li>
-            <li>Olahraga teratur (150 menit/minggu aktivitas sedang).</li>
-            <li>Jaga kualitas tidur & hidrasi cukup.</li>
-            <li>Lakukan cek kesehatan rutin setahun sekali.</li>
-          </ul>
-        `,
-      },
-      Overweight: {
-        color: "#F1C40F",
-        icon: "🟡",
-        advice: `
-          <b>Saran Pencegahan:</b>
-          <ul style="margin:8px 0 0 18px;">
-            <li>Kurangi makanan tinggi lemak, gula, dan garam.</li>
-            <li>Tingkatkan aktivitas fisik (jalan cepat, bersepeda, renang).</li>
-            <li>Atur porsi makan dan kurangi camilan berkalori tinggi.</li>
-            <li>Pantau berat badan secara berkala.</li>
-          </ul>
-        `,
-      },
-      "Obesitas I": {
-        color: "#E67E22",
-        icon: "🟠",
-        advice: `
-          <b>Saran Pencegahan:</b>
-          <ul style="margin:8px 0 0 18px;">
-            <li>Terapkan diet rendah kalori namun tetap seimbang (lebih banyak sayur & buah).</li>
-            <li>Rutin olahraga minimal 30 menit setiap hari.</li>
-            <li>Batasi screen time & aktivitas sedentari.</li>
-            <li>Konsultasi dengan dokter/ahli gizi untuk program penurunan berat badan.</li>
-          </ul>
-        `,
-      },
-      "Obesitas II": {
-        color: "#C0392B",
-        icon: "🔴",
-        advice: `
-          <b>Saran Pencegahan:</b>
-          <ul style="margin:8px 0 0 18px;">
-            <li>Segera konsultasi dengan dokter untuk intervensi medis/gizi.</li>
-            <li>Lakukan program diet ketat dengan pengawasan tenaga kesehatan.</li>
-            <li>Tingkatkan aktivitas fisik sesuai kemampuan.</li>
-            <li>Hindari makanan cepat saji, minuman manis, dan gorengan.</li>
-            <li>Cek kesehatan secara rutin (gula darah, tekanan darah, kolesterol).</li>
-          </ul>
-        `,
-      },
+        Kurus: {
+    color: "#E74C3C",
+    icon: "🔴",
+    advice: `
+      <b>Saran Pencegahan:</b>
+      <ul style="margin:8px 0 0 18px;">
+        <li>Perbanyak asupan kalori dan protein (nasi, roti, daging, ikan, telur, susu).</li>
+        <li>Makan lebih sering dengan porsi kecil tapi bergizi.</li>
+        <li>Hindari stres berlebih dan pastikan cukup tidur.</li>
+        <li>Konsultasi dengan ahli gizi bila penurunan berat badan signifikan.</li>
+        <li>Cuci tangan pakai sabun sebelum makan untuk mencegah diare.</li>
+        <li>Konsumsi air minum bersih dan layak untuk menghindari infeksi.</li>
+        <li>Ikuti penyuluhan gizi seimbang di posyandu/puskesmas.</li>
+      </ul>
+    `,
+  },
+  Normal: {
+    color: "#2ECC71",
+    icon: "🟢",
+    advice: `
+      <b>Saran Pencegahan:</b>
+      <ul style="margin:8px 0 0 18px;">
+        <li>Pertahankan pola makan gizi seimbang.</li>
+        <li>Olahraga teratur (150 menit/minggu aktivitas sedang).</li>
+        <li>Jaga kualitas tidur & hidrasi cukup.</li>
+        <li>Lakukan cek kesehatan rutin setahun sekali.</li>
+        <li>Lengkapi imunisasi dasar agar daya tahan tubuh tetap optimal.</li>
+        <li>Jaga kebersihan lingkungan rumah & buang sampah pada tempatnya.</li>
+        <li>Ikut kampanye kesehatan agar terbiasa pola hidup bersih dan sehat sejak dini.</li>
+      </ul>
+    `,
+  },
+  Overweight: {
+    color: "#F1C40F",
+    icon: "🟡",
+    advice: `
+      <b>Saran Pencegahan:</b>
+      <ul style="margin:8px 0 0 18px;">
+        <li>Kurangi makanan tinggi lemak, gula, dan garam.</li>
+        <li>Tingkatkan aktivitas fisik (jalan cepat, bersepeda, renang).</li>
+        <li>Atur porsi makan dan kurangi camilan berkalori tinggi.</li>
+        <li>Pantau berat badan secara berkala.</li>
+        <li>Hindari paparan asap rokok di rumah.</li>
+        <li>Pastikan ketersediaan air bersih & jamban sehat.</li>
+        <li>Ikuti penyuluhan gaya hidup sehat untuk mencegah obesitas.</li>
+      </ul>
+    `,
+  },
+  "Obesitas I": {
+    color: "#E67E22",
+    icon: "🟠",
+    advice: `
+      <b>Saran Pencegahan:</b>
+      <ul style="margin:8px 0 0 18px;">
+        <li>Terapkan diet rendah kalori namun tetap seimbang (lebih banyak sayur & buah).</li>
+        <li>Rutin olahraga minimal 30 menit setiap hari.</li>
+        <li>Batasi screen time & aktivitas sedentari.</li>
+        <li>Konsultasi dengan dokter/ahli gizi untuk program penurunan berat badan.</li>
+        <li>Ikuti kegiatan olahraga bersama di lingkungan sekitar.</li>
+        <li>Rawat lingkungan rumah agar bebas jentik nyamuk.</li>
+        <li>Biasakan cuci tangan sebelum makan & setelah beraktivitas.</li>
+      </ul>
+    `,
+  },
+  "Obesitas II": {
+    color: "#C0392B",
+    icon: "🔴",
+    advice: `
+      <b>Saran Pencegahan:</b>
+      <ul style="margin:8px 0 0 18px;">
+        <li>Segera konsultasi dengan dokter untuk intervensi medis/gizi.</li>
+        <li>Lakukan program diet ketat dengan pengawasan tenaga kesehatan.</li>
+        <li>Tingkatkan aktivitas fisik sesuai kemampuan.</li>
+        <li>Hindari makanan cepat saji, minuman manis, dan gorengan.</li>
+        <li>Cek kesehatan secara rutin (gula darah, tekanan darah, kolesterol).</li>
+        <li>Gunakan air bersih untuk masak & minum agar terhindar penyakit.</li>
+        <li>Ikut kampanye kesehatan tentang bahaya obesitas.</li>
+        <li>Hindari merokok & paparan asap rokok di rumah.</li>
+      </ul>
+    `,
+  },
+
+
     };
 
     // Normalisasi status agar cocok dengan key mapping

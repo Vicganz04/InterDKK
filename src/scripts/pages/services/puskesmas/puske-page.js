@@ -75,14 +75,26 @@ class PuskePage {
                 <p class="mb-1"><strong>Alamat:</strong> ${puskesmas.alamat}</p>
                 <p class="mb-1 kecamatan-text"><strong>Kecamatan:</strong> ${puskesmas.kecamatan}</p>
                 <p class="mb-1"><strong>Telepon:</strong> ${puskesmas.telepon}</p>
-                <a 
-                  href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(puskesmas.nama)}" 
-                  target="_blank" 
-                  class="btn btn-outline-success btn-sm mt-2"
-                  title="Lihat lokasi di Google Maps"
-                >
-                  <i class="fas fa-map-marker-alt"></i> Lokasi
-                </a>
+                <div style="display: flex; gap: 8px;">
+                  <a 
+                    href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(puskesmas.nama)}" 
+                    target="_blank" 
+                    class="btn btn-outline-success btn-sm mt-2"
+                    title="Lihat lokasi di Google Maps"
+                  >
+                    <i class="fas fa-map-marker-alt"></i> Lokasi
+                  </a>
+                  ${puskesmas.instagram ? `
+                    <a 
+                      href="https://instagram.com/${puskesmas.instagram}" 
+                      target="_blank" 
+                      class="btn btn-outline-danger btn-sm mt-2"
+                      title="Lihat Instagram Puskesmas"
+                    >
+                      <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                  ` : ""}
+                </div>
               </div>
             </div>
           </div>
