@@ -15,7 +15,7 @@ const routes = {
   "/siklus": new siklusPage(),
   "/dewasa": new DewasaPage(),
   "/balita": new BalitaPage(),
-  //"/chatbot": new ChatbotPage(), // tambahkan route chatbot
+  "/chatbot": new ChatbotPage(), // tambahkan route chatbot
 };
 
 export default routes;

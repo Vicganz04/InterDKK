@@ -31,7 +31,7 @@ export default class ChatbotPage {
     // Pesan awal chatbot
     appendMessage(
       "bot",
-      "Halo! Saya HealBot 🌱. Saya bisa membantu menjawab pertanyaan tentang gizi, stunting, IMT, dan kebutuhan kalori."
+      "Halo! Saya HealBot 🌱. Saya bisa membantu menjawab pertanyaan tentang gizi, stunting, penyakit, IMT, dan kebutuhan kalori."
     );
     appendMessage(
       "bot",
@@ -39,7 +39,8 @@ export default class ChatbotPage {
       Contoh pertanyaan:<br>
       - Apa itu stunting?<br>
       - Bagaimana cara mencegah stunting?<br>
-      - Kebutuhan kalori harian
+      - Apa saja gejala anemia?<br>
+      Silakan ketik pertanyaanmu di bawah ini!
     `
     );
 
@@ -57,10 +58,10 @@ export default class ChatbotPage {
       appendMessage("user", message);
       userInput.value = "";
 
-      appendMessage("bot", "Bot sedang mencari jawaban ...");
-
+      appendMessage("bot", "Sedang mencari jawaban ...");
+//http://127.0.0.1:5000/chat
       try {
-        const response = await fetch("http://127.0.0.1:5000/chat", {
+        const response = await fetch("https://web-production-fd4bf.up.railway.app/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt: message }),

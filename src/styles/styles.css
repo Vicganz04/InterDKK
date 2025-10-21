@@ -366,7 +366,7 @@ img {
   width: 320px;
   max-width: 98vw;
   background: #f8fafd;
-  border-radius: 14px;
+  border-radius: 15px;
   box-shadow: 0 4px 18px rgba(44,62,80,0.13);
   display: flex;
   flex-direction: column;
@@ -421,6 +421,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-height: 380px;
 }
 
 /* Custom Scrollbar */
