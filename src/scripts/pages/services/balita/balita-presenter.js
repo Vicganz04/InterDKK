@@ -142,6 +142,105 @@ class BalitaPresenter {
       bbIdealBBTB = lmsBBTB.M;
     }
 
+    // Prepare chart series for BB/U (weight-for-age) across ages 0..60
+    const seriesBBU = [];
+    // use standard z-values for SD lines (-3 .. +3) and labels
+    const zValues = [-3, -2, -1, 0, 1, 2, 3];
+    const zLabels = {
+      "-3": "Sangat di bawah normal",
+      "-2": "Di bawah rata-rata",
+      "-1": "Di bawah rata-rata",
+      0: "Rata-rata anak normal",
+      1: "Di atas rata-rata",
+      2: "Di atas rata-rata",
+      3: "Sangat di atas normal",
+    };
+
+    try {
+      // collect M values (median) per month for the child's sex from wazlms
+      const sexKey = jenisKelamin; // 'L' or 'P'
+      if (wazlms && wazlms[sexKey]) {
+        const months = Object.keys(wazlms[sexKey])
+          .map((m) => parseInt(m, 10))
+          .filter((m) => !Number.isNaN(m))
+          .sort((a, b) => a - b)
+          .filter((m) => m <= 60);
+
+        zValues.forEach((z) => {
+          const data = months.map((m) => {
+            const lms = wazlms[sexKey][String(m)];
+            if (!lms) return [m, null];
+            const L = lms.L;
+            const M = lms.M;
+            const S = lms.S;
+            // back-calculate x from z using LMS formula
+            let x;
+            if (L === 0) x = M * Math.exp(S * z);
+            else x = M * Math.pow(1 + L * S * z, 1 / L);
+            return [m, Number.isFinite(x) ? Number(x.toFixed(2)) : null];
+          });
+          seriesBBU.push({ name: zLabels[String(z)], data, z, sd: z });
+        });
+      }
+    } catch (err) {
+      // ignore chart generation errors
+    }
+
+    // Prepare TBU series (height-for-age) using hazlms
+    const seriesTBU = [];
+    try {
+      if (hazlms && hazlms[jenisKelamin]) {
+        const monthsT = Object.keys(hazlms[jenisKelamin])
+          .map((m) => parseInt(m, 10))
+          .filter((m) => !Number.isNaN(m))
+          .sort((a, b) => a - b)
+          .filter((m) => m <= 60);
+
+        zValues.forEach((z) => {
+          const data = monthsT.map((m) => {
+            const lms = hazlms[jenisKelamin][String(m)];
+            if (!lms) return [m, null];
+            const L = lms.L;
+            const M = lms.M;
+            const S = lms.S;
+            let x;
+            if (L === 0) x = M * Math.exp(S * z);
+            else x = M * Math.pow(1 + L * S * z, 1 / L);
+            return [m, Number.isFinite(x) ? Number(x.toFixed(2)) : null];
+          });
+          seriesTBU.push({ name: zLabels[String(z)], data, z, sd: z });
+        });
+      }
+    } catch (err) {
+      // ignore
+    }
+
+    const chart = {
+      seriesBBU,
+      // child's point to plot on BB/U chart
+      pointBBU: { x: umur, y: Number.isFinite(bb) ? Number(bb) : null },
+      // TBU: height-for-age series and point
+      seriesTBU,
+      pointTBU: { x: umur, y: Number.isFinite(tb) ? Number(tb) : null },
+    };
+
+    // save last chart data so view can re-draw if needed
+    this._lastChartData = chart;
+
+    // compute recommendation ranges (±10% of median M) where available
+    const makeRange = (m) => {
+      const n = Number(m);
+      if (!Number.isFinite(n)) return "-";
+      const min = Number((n * 0.9).toFixed(1));
+      const max = Number((n * 1.1).toFixed(1));
+      return { min, max };
+    };
+
+    const rekomBBURange = lmsBBU && lmsBBU.M ? makeRange(lmsBBU.M) : "-";
+    const rekomTBURange = lmsTBU && lmsTBU.M ? makeRange(lmsTBU.M) : "-";
+    const rekomBBTBRange = lmsBBTB && lmsBBTB.M ? makeRange(lmsBBTB.M) : "-";
+    const rekomIMTVal = lmsIMTU && lmsIMTU.M ? lmsIMTU.M : "-";
+
     this._tampilan.tampilkanHasilZScore({
       jk,
       umur,
@@ -150,19 +249,20 @@ class BalitaPresenter {
       imt,
       zScoreBBU,
       statusBBU,
-      rekomBBU: lmsBBU && lmsBBU.M ? lmsBBU.M : "-",
-      bbIdealBBU: lmsBBU && lmsBBU.M ? lmsBBU.M : "-",
+      rekomBBU: rekomBBURange,
+      bbIdealBBU: rekomBBURange,
       zScoreTBU,
       statusTBU,
-      rekomTBU: lmsTBU && lmsTBU.M ? lmsTBU.M : "-",
-      tbIdealTBU: lmsTBU && lmsTBU.M ? lmsTBU.M : "-",
+      rekomTBU: rekomTBURange,
+      tbIdealTBU: rekomTBURange,
       zScoreBBTB,
       statusBBTB,
-      rekomBBTB,
-      bbIdealBBTB,
+      rekomBBTB: rekomBBTBRange,
+      bbIdealBBTB: rekomBBTBRange,
       zScoreIMTU,
       statusIMTU,
-      rekomIMTU: lmsIMTU && lmsIMTU.M ? lmsIMTU.M : "-",
+      rekomIMTU: rekomIMTVal,
+      chart,
     });
   }
 }

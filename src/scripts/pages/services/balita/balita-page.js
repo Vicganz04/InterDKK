@@ -119,6 +119,10 @@ class BalitaPage {
     // Helper untuk bold rekomendasi jika ada (selalu tampilkan, meskipun sama dengan input)
     const rekom = (v) => {
       if (v === undefined || v === null || v === "-") return "-";
+      // if v is a range object {min,max}
+      if (typeof v === "object" && v.min !== undefined && v.max !== undefined) {
+        return `<b>${fmt(v.min)} - ${fmt(v.max)}</b>`;
+      }
       return `<b>${fmt(v)}</b>`;
     };
     // Helper untuk mapping status BBU ke warna, ikon, dan saran
@@ -200,7 +204,7 @@ class BalitaPage {
     const bbuStatus = bbuStatusMap[data.statusBBU] || bbuStatusMap["-"];
     // Helper untuk mapping status TBU ke warna, ikon, dan saran
     const tbuStatusMap = {
-      "Sangat Pendek": {
+      "Tinggi Badan Kurang": {
         color: "#E74C3C",
         icon: "🔴",
         advice: `
@@ -451,6 +455,132 @@ class BalitaPage {
     </div>
   </div>
 `;
+
+    // Insert chart container after rendering the textual results
+    const chartRootId = "bbu-chart-root";
+    let chartRoot = document.getElementById(chartRootId);
+    if (!chartRoot) {
+      chartRoot = document.createElement("div");
+      chartRoot.id = chartRootId;
+      chartRoot.style = "min-width:300px; height:360px; margin-top:18px;";
+      container.appendChild(chartRoot);
+    }
+
+    // TBU chart container (height-for-age)
+    const chartRootTbuId = "tbu-chart-root";
+    let chartRootTbu = document.getElementById(chartRootTbuId);
+    if (!chartRootTbu) {
+      chartRootTbu = document.createElement("div");
+      chartRootTbu.id = chartRootTbuId;
+      chartRootTbu.style = "min-width:300px; height:360px; margin-top:18px;";
+      container.appendChild(chartRootTbu);
+    }
+
+    // Helper to load Highcharts if it's not already available
+    const loadHighcharts = () => {
+      return new Promise((resolve, reject) => {
+        if (window.Highcharts) return resolve(window.Highcharts);
+        const s = document.createElement("script");
+        s.src = "https://code.highcharts.com/highcharts.js";
+        s.onload = () => resolve(window.Highcharts);
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    };
+
+    // shared color map for SD lines
+    const colorMap = {
+      "-3": "#C0392B",
+      "-2": "#FF3B30",
+      "-1": "#FFD60A",
+      0: "#2ECC71",
+      1: "#F1C40F",
+      2: "#E67E22",
+      3: "#E74C3C",
+    };
+
+    // Draw chart using presenter's chart data (if provided)
+    const drawChart = async (chartData) => {
+      if (!chartData || !chartData.seriesBBU) return;
+      try {
+        const Highcharts = await loadHighcharts();
+        const series = chartData.seriesBBU.map((s) => ({
+          name: s.name,
+          data: s.data,
+          marker: { enabled: false },
+          lineWidth: s.sd === 0 ? 3 : 1,
+          color: s.sd !== undefined ? colorMap[String(s.sd)] : undefined,
+        }));
+        // add child point
+        if (chartData.pointBBU && chartData.pointBBU.y !== null) {
+          series.push({
+            type: "scatter",
+            name: "Anak Anda",
+            data: [[chartData.pointBBU.x, chartData.pointBBU.y]],
+            marker: { enabled: true, radius: 6, symbol: "square" },
+            color: "#000000",
+            zIndex: 5,
+          });
+        }
+
+        Highcharts.chart(chartRootId, {
+          chart: { type: "line", zoomType: "x" },
+          title: { text: "Berat Badan menurut Umur (BB/U)" },
+          subtitle: { text: "Sumber: WHO-based LMS (approksimasi)" },
+          xAxis: { title: { text: "Umur (Bulan)" }, allowDecimals: false },
+          yAxis: { title: { text: "Berat Badan (Kg)" }, min: 0 },
+          tooltip: { shared: true, crosshairs: true },
+          series,
+          credits: { enabled: false },
+        });
+      } catch (err) {
+        // silently ignore chart errors
+        // console.error('Gagal memuat Highcharts', err);
+      }
+    };
+
+    const drawChartTBU = async (chartData) => {
+      if (!chartData || !chartData.seriesTBU) return;
+      try {
+        const Highcharts = await loadHighcharts();
+        const series = chartData.seriesTBU.map((s) => ({
+          name: s.name,
+          data: s.data,
+          marker: { enabled: false },
+          lineWidth: s.sd === 0 ? 3 : 1,
+          color: s.sd !== undefined ? colorMap[String(s.sd)] : undefined,
+        }));
+        if (chartData.pointTBU && chartData.pointTBU.y !== null) {
+          series.push({
+            type: "scatter",
+            name: "Anak Anda",
+            data: [[chartData.pointTBU.x, chartData.pointTBU.y]],
+            marker: { enabled: true, radius: 6, symbol: "square" },
+            color: "#000000",
+            zIndex: 5,
+          });
+        }
+
+        Highcharts.chart(chartRootTbuId, {
+          chart: { type: "line", zoomType: "x" },
+          title: { text: "Tinggi Badan menurut Umur (TB/U)" },
+          subtitle: { text: "Sumber: WHO-based LMS (approksimasi)" },
+          xAxis: { title: { text: "Umur (Bulan)" }, allowDecimals: false },
+          yAxis: { title: { text: "Tinggi/Panjang (Cm)" }, min: 0 },
+          tooltip: { shared: true, crosshairs: true },
+          series,
+          credits: { enabled: false },
+        });
+      } catch (err) {
+        // ignore
+      }
+    };
+
+    // request drawing chart using chart data from presenter if available
+    if (container && this._presenter && this._presenter._lastChartData) {
+      drawChart(this._presenter._lastChartData);
+      drawChartTBU(this._presenter._lastChartData);
+    }
   }
 }
 
