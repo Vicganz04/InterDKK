@@ -107,12 +107,12 @@ export default class HomePage {
   </div>
 </section>
 
-<!-- Section Kenapa Nutricek Penting -->
+<!-- Section Kenapa HealthMate Penting -->
 <section class="nutricek-section py-5" style="background: #eafcf9;">
   <div class="container">
-    <h2 class="fw-bold text-center mb-4" style="font-size:2rem;">Mengapa Nutricek Penting untuk Kesehatan Anda dan Keluarga?</h2>
+    <h2 class="fw-bold text-center mb-4" style="font-size:2rem;">Mengapa HealthMate Penting untuk Kesehatan Anda?</h2>
     <p class="text-center mb-5" style="font-size:1.15rem;">
-      Nutricek membantu masyarakat memantau kesehatan secara mandiri, baik untuk balita maupun dewasa.
+      HealthMate membantu masyarakat memantau kesehatan secara mandiri, baik untuk balita maupun dewasa.
     </p>
     <div class="row justify-content-center">
       <div class="col-md-6 mb-4">
@@ -154,7 +154,7 @@ export default class HomePage {
       <div class="col-lg-8 text-center text-white py-5">
         <h2 class="fw-bold mb-3" style="font-size:2.3rem;">Mulai Pantau Kesehatan Anda Sekarang</h2>
         <p class="mb-3" style="font-size:1.15rem;">
-          Jangan tunggu sampai masalah kesehatan muncul. Dengan Nutricek, Anda dapat melakukan pemeriksaan kesehatan balita maupun dewasa secara mandiri, memantau siklus haid, dan mengakses informasi puskesmas di Kota Semarang dengan mudah dan cepat.
+          Jangan tunggu sampai masalah kesehatan muncul. Dengan HealthMate, Anda dapat melakukan pemeriksaan kesehatan balita maupun dewasa secara mandiri, memantau siklus haid, dan mengakses informasi puskesmas di Kota Semarang dengan mudah dan cepat.
         </p>
         <a href="#/services" class="btn btn-warning px-5 py-3 fw-bold" style="font-size:1.1rem; border-radius:30px;">
           Mulai Sekarang

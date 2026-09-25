@@ -71,7 +71,7 @@ class ServicesPage {
               <div class="card-body text-center">
                    <i class="fas fa-user fa-3x mb-3" style="color: #6ebe77;"></i>
                   <h5 class="card-title fw-bold mb-2">Cek Kesehatan Dewasa</h5>
-                  <p class="card-text text-muted">Cek status kesehatan dan kebutuhan kalori harian untuk dewasa.</p>
+                  <p class="card-text text-muted">Cek Indeks Masa Tubuh (IMT) dan status kesehatan untuk dewasa.</p>
                   <a href="#/dewasa" class="btn btn-success">Cek Dewasa</a>
               </div>
             </div>

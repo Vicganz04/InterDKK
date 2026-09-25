@@ -36,14 +36,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById('chatbotContent').innerHTML = await chatbotInstance.render();
       if (chatbotInstance.afterRender) chatbotInstance.afterRender();
       // Tambahkan tombol panah kebawah di pojok kanan header
+      const headerActions = chatbotRoot.querySelector('.chat-header-actions');
       const header = chatbotRoot.querySelector('.chat-header');
-      if (header) {
+      if (headerActions || header) {
         const downBtn = document.createElement('button');
-        downBtn.className = 'chatbot-down-btn';
+        downBtn.className = 'chat-action-btn chatbot-down-btn';
         downBtn.title = 'Tutup Chatbot';
-        downBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L11 14L16 9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        downBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
         downBtn.onclick = hideChatbot;
-        header.appendChild(downBtn);
+        if (headerActions) {
+          headerActions.appendChild(downBtn);
+        } else {
+          header.appendChild(downBtn);
+        }
       }
       chatbotVisible = true;
     }
